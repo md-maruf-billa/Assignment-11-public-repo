@@ -44,8 +44,8 @@ const Slider = () => {
                             <div className='h-screen bg-no-repeat bg-cover bg-center flex justify-center items-center flex-col gap-5' style={{
                                 backgroundImage: `linear-gradient(360deg, rgba(0,0,0,0.2), rgba(0,0,0,0.7)),url(${slider.image})`
                             }} >
-                                <h2 className='text-9xl text-green-500 font-rancho'>{slider.title}</h2>
-                                <p className='text-3xl container text-white text-center'>{slider.des}</p>
+                                <h2 className='text-4xl lg:text-9xl text-green-500 font-rancho'>{slider.title}</h2>
+                                <p className='lg:text-3xl container text-white text-center'>{slider.des}</p>
 
                                 <Link><Button btnName={"Order a consultation"}/></Link>
                             </div>
