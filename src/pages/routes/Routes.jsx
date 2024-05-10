@@ -4,6 +4,8 @@ import Layout from "../layout/Layout";
 import Error from "../error/Error";
 import Login from "../login/Login";
 import Registration from "../registration/Registration";
+import PrivetRoute from "../../providers/privet/PrivetRoute";
+import AddServices from "../addServices/AddServices";
 
 
 const Routes = createBrowserRouter([
@@ -23,9 +25,18 @@ const Routes = createBrowserRouter([
             {
                 path:"registration",
                 element:<Registration/>
+            },
+            {
+                path:"/add-services",
+                element:<PrivetRoute><AddServices/></PrivetRoute>
             }
         ]
     }
 ])
 
 export default Routes;
+
+// "/add-services
+// "/manage-services
+// "/booked-services
+// "/service-to-do

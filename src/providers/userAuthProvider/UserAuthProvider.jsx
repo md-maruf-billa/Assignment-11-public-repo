@@ -17,12 +17,17 @@ const UserAuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [currentUser, setCurrentUser] = useState(null);
 
-    //--------------Login with email and password -----------
+    //--------------SignUP with email and password -----------
     const signUnWithPassword = (email,password)=>{
         setLoading(true);
-
         return createUserWithEmailAndPassword(auth,email,password)
         
+    }
+
+    // --------------Login with email and password--------------
+    const logInWithEmail = (email,password)=>{
+        setLoading(true);
+        return signInWithEmailAndPassword(auth,email,password)
     }
 
     //---------------Log out user------------
@@ -60,7 +65,8 @@ const UserAuthProvider = ({ children }) => {
         logOutUser,
         loading,
         signUnWithPassword,
-        setLoading
+        setLoading,
+        logInWithEmail
     }
     return (
         <userDataContext.Provider value={userInfo}>
