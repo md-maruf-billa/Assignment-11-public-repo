@@ -1,28 +1,28 @@
 import React from 'react';
+import Button from '../button/Button';
+import { Link } from 'react-router-dom';
 
-const ServicesCard = ({services}) => {
+const ServicesCard = ({ services }) => {
+    const { _id,photoURL, serviceName, price, } = services;
     return (
-        <div className=" overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
-            <img className="object-cover w-full h-64" src="https://images.unsplash.com/photo-1550439062-609e1531270e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="Article"/>
 
-                <div className="p-6">
-                    <div>
-                        <span className="text-xs font-medium text-blue-600 uppercase dark:text-blue-400">Product</span>
-                        <a href="#" className="block mt-2 text-xl font-semibold text-gray-800 transition-colors duration-300 transform dark:text-white hover:text-gray-600 hover:underline" tabIndex="0" role="link">I Built A Successful Blog In One Year</a>
-                        <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Molestie parturient et sem ipsum volutpat vel. Natoque sem et aliquam mauris egestas quam volutpat viverra. In pretium nec senectus erat. Et malesuada lobortis.</p>
-                    </div>
+        <div className="flex flex-col items-center justify-center w-full  mx-auto">
+            <div className="w-full h-64 bg-gray-300 bg-center bg-cover rounded-lg shadow-md" style={{backgroundImage: `url(${photoURL})`}}></div>
 
-                    <div className="mt-4">
-                        <div className="flex items-center">
-                            <div className="flex items-center">
-                                <img className="object-cover h-10 rounded-full" src="https://images.unsplash.com/photo-1586287011575-a23134f797f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=48&q=60" alt="Avatar"/>
-                                    <a href="#" className="mx-2 font-semibold text-gray-700 dark:text-gray-200" tabIndex="0" role="link">Jone Doe</a>
-                            </div>
-                            <span className="mx-1 text-xs text-gray-600 dark:text-gray-300">21 SEP 2015</span>
-                        </div>
-                    </div>
+            <div className="w-56 -mt-10 overflow-hidden bg-white rounded-lg shadow-lg md:w-64 dark:bg-gray-800">
+                <h3 className="py-2 font-bold tracking-wide text-center text-gray-800 uppercase dark:text-white">{serviceName}</h3>
+
+                <div className="flex items-center justify-between px-3 py-2 bg-gray-200 dark:bg-gray-700">
+                    <span className="font-bold text-gray-800 dark:text-gray-200">${price}</span>
+                    <Link 
+                    to={`/service-details/${_id}`}
+                    className="px-2 py-1 text-xs font-semibold text-white uppercase transition-colors duration-300 transform bg-gray-800 rounded hover:bg-gray-700 dark:hover:bg-gray-600 focus:bg-gray-700 dark:focus:bg-gray-600 focus:outline-none">View Details</Link>
+                    
                 </div>
+                
+            </div>
         </div>
+        
     );
 };
 

@@ -106,7 +106,7 @@ const NavBar = () => {
                         </ul>
                     </div>
                     <Link to={"/"} className='flex items-center cursor-pointer'>
-                        <img className='size-[80px]' src="./houselogo.png" alt="" />
+                        <img className='size-[80px]' src="https://i.postimg.cc/nzLwNJtK/houselogo.png" alt="" />
                         <p className="text-3xl font-rancho">H.H.H</p>
                     </Link>
                 </div>

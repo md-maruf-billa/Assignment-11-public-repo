@@ -9,7 +9,6 @@ const Home = () => {
         axios.get('http://localhost:7000/all-services')
             .then(res => setAllServices(res.data))
     }, [])
-    console.log(allServices)
     return (
         <div>
             {/* --------Banner hare------------ */}
@@ -31,7 +30,7 @@ const Home = () => {
 
                 {
                     !allServices ? <div className='flex justify-center items-center'><span className="loading loading-spinner text-warning"></span></div> :
-                        <div className='container mx-auto grid grid-cols-1 md:grid-cols-2 gap-10  mt-10'>
+                        <div className='container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10  mt-10'>
                             {
                                 allServices.map(services => <ServicesCard key={services._id} services={services} />)
                             }

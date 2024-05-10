@@ -6,6 +6,7 @@ import Login from "../login/Login";
 import Registration from "../registration/Registration";
 import PrivetRoute from "../../providers/privet/PrivetRoute";
 import AddServices from "../addServices/AddServices";
+import ServicesDetails from "../servicesDetails/ServicesDetails";
 
 
 const Routes = createBrowserRouter([
@@ -29,6 +30,11 @@ const Routes = createBrowserRouter([
             {
                 path:"/add-services",
                 element:<PrivetRoute><AddServices/></PrivetRoute>
+            },
+            {
+                path:"/service-details/:id",
+                element:<ServicesDetails/>,
+                loader:({params})=> fetch(`http://localhost:7000/service/${params.id}`)
             }
         ]
     }
