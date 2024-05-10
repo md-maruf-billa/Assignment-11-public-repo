@@ -3,10 +3,12 @@ import Button from '../../components/button/Button';
 import { Link } from 'react-router-dom';
 import { userDataContext } from '../../providers/userAuthProvider/UserAuthProvider';
 import Swal from 'sweetalert2'
+import { updateProfile } from 'firebase/auth';
+import auth from '../../utils/firebase/firebase.config';
 
 const Registration = () => {
 
-    const { loginWithGoogle } = useContext(userDataContext);
+    const { loginWithGoogle, signUnWithPassword, setLoading } = useContext(userDataContext);
 
 
 
@@ -23,10 +25,52 @@ const Registration = () => {
             .catch(err => {
                 Swal.fire({
                     title: "LoggedIn Failed",
-                    text: `${err.message.split('/')[1].replace(")","")}`,
+                    text: `${err.message.split('/')[1].replace(")", "")}`,
                     icon: "error"
                 });
             })
+    }
+
+
+    //-------------login with email and password------------
+    const handelRegistration = (event) => {
+        event.preventDefault();
+
+        const form = event.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const photoURL = form.photoURL.value;
+        const password = form.password.value;
+
+        signUnWithPassword(email, password)
+            .then(res => {
+                updateProfile(auth.currentUser, {
+                    displayName: `${name}`, photoURL: `${photoURL}`
+                })
+                    .then(res => {
+                        setLoading(true);
+                        Swal.fire({
+                            title: "Congratulation",
+                            text: "Your Registration is successfully!",
+                            icon: "success"
+                        });
+                    })
+                    .catch(err => {
+                        Swal.fire({
+                            title: "LoggedIn Failed",
+                            text: `${err.message.split('/')[1].replace(")", "")}`,
+                            icon: "error"
+                        });
+                    })
+            })
+            .catch(err => {
+                Swal.fire({
+                    title: "LoggedIn Failed",
+                    text: `${err.message.split('/')[1].replace(")", "")}`,
+                    icon: "error"
+                });
+            })
+
     }
 
     return (
@@ -36,7 +80,7 @@ const Registration = () => {
                     <img className="size-[180px]" src="./houselogo.png" alt="" />
                 </div>
 
-                <form className="mt-2">
+                <form onSubmit={(event) => handelRegistration(event)} className="mt-2">
 
                     <div className="relative flex items-center mt-8">
                         <span className="absolute">
@@ -45,7 +89,7 @@ const Registration = () => {
                             </svg>
                         </span>
 
-                        <input type="text" className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Username" />
+                        <input type="text" className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Username" name='name' />
                     </div>
 
                     <div className="relative flex items-center mt-6">
@@ -55,7 +99,7 @@ const Registration = () => {
                             </svg>
                         </span>
 
-                        <input type="email" className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Email address" />
+                        <input type="email" className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Email address" name='email' />
                     </div>
 
                     <div className="relative flex items-center mt-4">
@@ -65,7 +109,7 @@ const Registration = () => {
                             </svg>
                         </span>
 
-                        <input type="text" className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Photo URL" />
+                        <input type="text" className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Photo URL" name='photoURL' />
                     </div>
                     <div className="relative flex items-center mt-4">
                         <span className="absolute">
@@ -74,11 +118,11 @@ const Registration = () => {
                             </svg>
                         </span>
 
-                        <input type="password" className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Password" />
+                        <input type="password" className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Password" name='password' />
                     </div>
 
                     <div className="mt-8">
-                        <button className='w-full'>
+                        <button type='submit' className='w-full'>
                             <Button btnName={"Registration Now"} customStyle={"w-full"} />
                         </button>
                     </div>
@@ -98,9 +142,9 @@ const Registration = () => {
                 {/* ---------Social login--------------- */}
                 <div className="flex items-center mt-8 justify-center">
                     <div className="flex items-center gap-3 sm:gap-x-5">
-                        <button 
-                        onClick={handelGoogleLogin}
-                        className="bg-white dark:bg-gray-900 dark:border-gray-700 dark:hover:bg-gray-800 rounded-lg hover:bg-gray-100 duration-300 transition-colors border px-8 py-2.5">
+                        <button
+                            onClick={handelGoogleLogin}
+                            className="bg-white dark:bg-gray-900 dark:border-gray-700 dark:hover:bg-gray-800 rounded-lg hover:bg-gray-100 duration-300 transition-colors border px-8 py-2.5">
                             <svg className="w-5 h-5 sm:h-6 sm:w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clipPath="url(#clip0_3033_94454)">
                                     <path d="M23.766 12.2764C23.766 11.4607 23.6999 10.6406 23.5588 9.83807H12.24V14.4591H18.7217C18.4528 15.9494 17.5885 17.2678 16.323 18.1056V21.1039H20.19C22.4608 19.0139 23.766 15.9274 23.766 12.2764Z" fill="#4285F4" />
