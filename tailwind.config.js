@@ -6,11 +6,14 @@ export default {
   ],
   theme: {
     extend: {
-    fontFamily:{
-      "rancho":"Rancho",
-      "roboto":"Roboto",
-    }
+      fontFamily: {
+        "rancho": "Rancho",
+        "roboto": "Roboto",
+      }
     },
   },
   plugins: [require('daisyui')],
+  daisyui: {
+    themes: ["dark","dracula","synthwave","light"],
+  }
 }
