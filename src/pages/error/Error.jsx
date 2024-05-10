@@ -9,7 +9,7 @@ const Error = () => {
     return (
         <div >
             <NavBar />
-            <Lottie className='h-[90vh]' animationData={errorAnimation} />
+            <Lottie className='h-[80vh] lg:h-[90vh]' animationData={errorAnimation} />
             <div className='flex justify-center items-center'>
                 <Link to={"/"}>
                     <Button btnName={"Go Home"} />
