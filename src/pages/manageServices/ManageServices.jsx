@@ -30,7 +30,7 @@ const ManageServices = () => {
 
                             </div>
                             <div className='*:cursor-pointer  *:size-[40px] *:flex justify-center items-center space-y-4 *:rounded-lg *:text-white'>
-                                <Link state={""} to={`/service-details/${service._id}`} className='p-3  border bg-green-800 cursor-pointer flex justify-center items-center'>
+                                <Link  to={`/service-details/${service._id}`} className='p-3  border bg-green-800 cursor-pointer flex justify-center items-center'>
 
                                     <FaEye />
 

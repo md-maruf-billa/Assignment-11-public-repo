@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Button from '../../components/button/Button';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import { userDataContext } from '../../providers/userAuthProvider/UserAuthProvider';
 
 const UpdateService = () => {
     const service = useLoaderData();
+    const navigate = useNavigate();
+    const {setLoading} = useContext(userDataContext);
 
     const updateService = (e) => {
         e.preventDefault();
@@ -13,8 +18,30 @@ const UpdateService = () => {
         const price = dataForm.price.value;
         const serviceArea = dataForm.serviceArea.value;
         const description = dataForm.description.value;
-        const updateData = {photoURL,serviceName,price,serviceArea,description}
-        
+        const updateData = { photoURL, serviceName, price, serviceArea, description }
+
+
+        // ----------------SET DATA SERVER SIDE-----------------
+        axios.put(`http://localhost:7000/update-service/${service._id}`, updateData)
+
+            .then(res => {
+                if (res.data.modifiedCount) {
+                    Swal.fire({
+                        title: "Congratulation",
+                        text: "Your Service Update successfully!",
+                        icon: "success"
+                    });
+                    setLoading(true);
+                    navigate("/manage-services")
+                }
+            })
+            .catch(err => {
+                Swal.fire({
+                    title: "Opps!",
+                    text: "Something went wrong!!",
+                    icon: "error"
+                });
+            })
     }
 
     return (
