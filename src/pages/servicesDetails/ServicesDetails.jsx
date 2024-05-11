@@ -4,15 +4,48 @@ import { useLoaderData } from 'react-router-dom';
 import { CiClock2 } from "react-icons/ci";
 import Button from '../../components/button/Button';
 import { userDataContext } from '../../providers/userAuthProvider/UserAuthProvider';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 const ServicesDetails = () => {
-    const { currentUser } = useContext(userDataContext);
+    const { currentUser, setLoading } = useContext(userDataContext);
     const data = useLoaderData();
-    const {_id, photoURL, serviceName, price, serviceArea, description, providerPhoto, providerEmail, providerName } = data;
+    const { _id, photoURL, serviceName, price, serviceArea, description, providerPhoto, providerEmail, providerName } = data;
 
 
-    const handelBookService = () => {
+    const handelBookService = (e) => {
+        e.preventDefault();
+        const currentDataForm = e.target;
+        const photoURL = currentDataForm.photoURL.defaultValue;
+        const serviceName = currentDataForm.serviceName.defaultValue;
+        const serviceProviderName = currentDataForm.serviceProviderName.defaultValue;
+        const serviceProviderEmail = currentDataForm.serviceProviderEmail.defaultValue;
+        const customerName = currentDataForm.customerName.defaultValue;
+        const customerEmail = currentDataForm.customerEmail.defaultValue;
+        const price = currentDataForm.price.defaultValue;
+        const bookingDate = currentDataForm.bookingDate.value;
+        const description = currentDataForm.description.value;
+        const status = "pending"
 
+        const allBookingData = { photoURL, serviceName, serviceProviderName, serviceProviderEmail, customerName, customerEmail, price, bookingDate, description,status };
+
+        axios.post("http://localhost:7000/post-booking", allBookingData)
+            .then(res => {
+                Swal.fire({
+                    title: "Congratulation",
+                    text: "Your Booking is Successfully saved!",
+                    icon: "success"
+                });
+                setLoading(true)
+
+            }).catch(err => {
+                Swal.fire({
+                    title: "Opps",
+                    text: "Booking save failed something went wrong",
+                    icon: "error"
+                });
+            })
     }
+
     return (
         <div className='container mx-auto min-h-[calc(100vh-112px)] mt-28'>
             <header class="bg-white dark:bg-gray-900">
@@ -167,68 +200,74 @@ const ServicesDetails = () => {
             {/* ---------------Start Modal hare-----for booking a service--------- */}
 
             <dialog id="my_modal_1" className="modal">
-                <div className="modal-box border-2 border-green-500">
-                    <section className=" p-6 mx-auto bg-white rounded-md  dark:bg-gray-800 ">
+                <div className="modal-box border-2 bg-white border-green-500">
+                    <section className=" p-6 mx-auto bg-white rounded-md ">
                         <h2 className="text-3xl md:text-6xl font-semibold text-green-500 capitalize dark:text-white font-rancho text-center">Booking Service</h2>
 
                         <form onSubmit={handelBookService} className='mt-10'>
-                            <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+                            <div className="md:grid lg:grid-cols-2 space-y-3 md:space-y-0 gap-6 mt-4">
+
                                 <div>
-                                    <label className="text-gray-700 dark:text-gray-200" htmlFor="Service Area">Service Id</label>
-                                    <input required name="serviceArea" defaultValue={_id} disabled type="text" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
-                                </div>
-                                <div>
-                                    <label className="text-gray-700 dark:text-gray-200" htmlFor="username">Image URL</label>
+                                    <label className="text-gray-700  " htmlFor="username">Image URL</label>
                                     <input required name="photoURL" defaultValue={photoURL} disabled type="text" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
                                 </div>
 
                                 <div>
-                                    <label className="text-gray-700 dark:text-gray-200" htmlFor="emailAddress">Service Name</label>
+                                    <label className="text-gray-700  " htmlFor="emailAddress">Service Name</label>
                                     <input required name="serviceName" defaultValue={serviceName} disabled type="text" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
                                 </div>
 
+
+
+
                                 <div>
-                                    <label className="text-gray-700 dark:text-gray-200" htmlFor="password">Price</label>
+                                    <label className="text-gray-700  " htmlFor="Service Area">Service Provider Name</label>
+                                    <input required name="serviceProviderName" defaultValue={providerName} disabled type="text" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                                </div>
+                                <div>
+                                    <label className="text-gray-700  " htmlFor="Service Area">Service Provider Email</label>
+                                    <input required name="serviceProviderEmail" defaultValue={providerEmail} disabled type="text" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                                </div>
+                                <div>
+                                    <label className="text-gray-700  " htmlFor="Service Area">Customer Name</label>
+                                    <input required name="customerName" defaultValue={currentUser?.displayName} disabled type="text" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                                </div>
+                                <div>
+                                    <label className="text-gray-700  " htmlFor="Service Area">Customer Email</label>
+                                    <input required name="customerEmail" defaultValue={currentUser?.email} disabled type="text" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                                </div>
+                                <div>
+                                    <label className="text-gray-700  " htmlFor="password">Price</label>
                                     <input required name="price" defaultValue={price} disabled type="text" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
                                 </div>
+                                <div>
+                                    <label className="text-gray-700  " htmlFor="Service Area">Booking Date</label>
+                                    <input
 
-
-                                <div>
-                                    <label className="text-gray-700 dark:text-gray-200" htmlFor="Service Area">Service Provider Name</label>
-                                    <input required name="serviceArea" defaultValue={providerName} disabled type="text" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
-                                </div>
-                                <div>
-                                    <label className="text-gray-700 dark:text-gray-200" htmlFor="Service Area">Service Provider Email</label>
-                                    <input required name="serviceArea" defaultValue={providerEmail} disabled type="text" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
-                                </div>
-                                <div>
-                                    <label className="text-gray-700 dark:text-gray-200" htmlFor="Service Area">Customer Name</label>
-                                    <input required name="serviceArea" defaultValue={currentUser?.email} disabled type="text" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
-                                </div>
-                                <div>
-                                    <label className="text-gray-700 dark:text-gray-200" htmlFor="Service Area">Booking Date</label>
-                                    <input required name="serviceArea" type="date" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                                        required name="bookingDate" type="date" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
                                 </div>
                                 <div className='col-span-2'>
-                                    <label className="text-gray-700 dark:text-gray-200" htmlFor="passwordConfirmation">Booking instruction</label>
+                                    <label className="text-gray-700  " htmlFor="passwordConfirmation">Booking instruction</label>
                                     <textarea required
                                         name='description'
-                                        rows="4"
+                                        rows="3"
                                         placeholder='Write your booking instruction ex: exact location etc' type="text" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
                                 </div>
                             </div>
+                            {/* ------------ACTION BUTTON------------ */}
+                            <div className="flex justify-between mt-5">
+                                <form method="dialog">
+                                    {/* if there is a button in form, it will close the modal */}
+                                    <button className="btn btn-error btn-outline">Cancel</button>
+                                </form>
+                                <div>
+                                    <button><Button btnName={"Booking Now"} /></button>
+                                </div>
+                            </div>
                         </form>
+
                     </section>
-                    {/* ------------ACTION BUTTON------------ */}
-                    <div className="flex justify-between">
-                        <form method="dialog">
-                            {/* if there is a button in form, it will close the modal */}
-                            <button className="btn btn-error btn-outline">Cancel</button>
-                        </form>
-                        <div>
-                            <button><Button btnName={"Booking Now"} /></button>
-                        </div>
-                    </div>
+
                 </div>
             </dialog>
         </div>
