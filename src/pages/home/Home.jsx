@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import Slider from '../../components/slider/Slider';
 import ServicesCard from '../../components/servicesCard/ServicesCard';
 import axios from 'axios';
+import Button from '../../components/button/Button';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     const [allServices, setAllServices] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:7000/all-services')
+        axios.get('https://househelphub.vercel.app/all-services')
             .then(res => setAllServices(res.data))
     }, [])
     return (
@@ -19,10 +21,10 @@ const Home = () => {
 
             <div className='mt-20 px-5'>
                 <div className='flex items-center justify-center gap-7'>
-                    <img className='w-[25%] md:w-auto'  src="https://renovation.thememove.com/data/images/services_page_title.png" alt="" />
-                    <div className='w-3/4 md:w-1/2'>
+                    <img className='w-[25%] md:w-auto' src="https://renovation.thememove.com/data/images/services_page_title.png" alt="" />
+                    <div className='w-3/4 md:w-1/2 text-center'>
                         <h2 className='text-4xl md:text-5xl lg:text-7xl font-rancho text-green-500 '>Professional Services </h2>
-                        <p className='text-xs md:text-base'>Every home owner has a list of renovation, home repair, or home improvement projects he or she needs done both interior and exterior. Sometimes that list can get quite long, too! The bathrooms that needs updating.</p>
+                        <p className='text-xs md:text-base '>Every home owner has a list of renovation, home repair, or home improvement projects he or she needs done both interior and exterior. Sometimes that list can get quite long, too! The bathrooms that needs updating.</p>
                     </div>
                 </div>
 
@@ -37,6 +39,13 @@ const Home = () => {
 
                         </div>
                 }
+            </div>
+
+            {/* ---------------See all services------------------ */}
+            <div className='flex justify-center items-center mt-10'>
+                <Link to={"/all-services"}>
+                    <Button btnName={"See all Services"} />
+                </Link>
             </div>
         </div>
     );

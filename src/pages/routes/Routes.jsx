@@ -7,34 +7,40 @@ import Registration from "../registration/Registration";
 import PrivetRoute from "../../providers/privet/PrivetRoute";
 import AddServices from "../addServices/AddServices";
 import ServicesDetails from "../servicesDetails/ServicesDetails";
+import AllServices from "../allServices/AllServices";
 
 
 const Routes = createBrowserRouter([
     {
-        path:"/",
-        element:<Layout/>,
-        errorElement:<Error></Error>,
-        children:[
+        path: "/",
+        element: <Layout />,
+        errorElement: <Error></Error>,
+        children: [
             {
-                path:"/",
-                element:<Home/>
+                path: "/",
+                element: <Home />
             },
             {
-                path:"/login",
-                element:<Login/>
+                path: "/login",
+                element: <Login />
             },
             {
-                path:"registration",
-                element:<Registration/>
+                path: "registration",
+                element: <Registration />
             },
             {
-                path:"/add-services",
-                element:<PrivetRoute><AddServices/></PrivetRoute>
+                path: "/add-services",
+                element: <PrivetRoute><AddServices /></PrivetRoute>
             },
             {
-                path:"/service-details/:id",
-                element:<ServicesDetails/>,
-                loader:({params})=> fetch(`http://localhost:7000/service/${params.id}`)
+                path: "/service-details/:id",
+                element: <PrivetRoute><ServicesDetails /></PrivetRoute>,
+                loader: ({ params }) => fetch(`https://househelphub.vercel.app/service/${params.id}`)
+            },
+            {
+                path:"/all-services",
+                element:<AllServices/>,
+                loader: () => fetch(`https://househelphub.vercel.app/all-services`)
             }
         ]
     }

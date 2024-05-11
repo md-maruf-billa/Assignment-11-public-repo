@@ -24,7 +24,7 @@ const AddServices = () => {
         const serviceData = { photoURL, serviceName, price, serviceArea, description, providerPhoto, providerEmail, providerName };
 
         // -----------sent data in server side----------
-        axios.post("http://localhost:7000/add-service", serviceData)
+        axios.post("https://househelphub.vercel.app/add-service", serviceData)
             .then(data => {
                 if (data?.data?.acknowledged) {
                     Swal.fire({

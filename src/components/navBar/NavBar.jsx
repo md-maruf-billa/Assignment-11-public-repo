@@ -77,7 +77,7 @@ const NavBar = () => {
     //------------Shared Nav link hare-----------
     const navItems = <>
         <li><NavLink to={"/"}>Home</NavLink></li>
-        <li><NavLink to={"/services"}>Services</NavLink></li>
+        <li><NavLink to={"/all-services"}>Services</NavLink></li>
         {
             currentUser?.email ? <li>
                 <details>
@@ -151,7 +151,7 @@ const NavBar = () => {
                                     </div>
                                 </Tooltip>
                                 <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                                    <li onClick={() => document.getElementById('my_modal_1').showModal()}><a><FaGear />Edit Profile</a></li>
+                                    <li onClick={() => document.getElementById('my_modal_2').showModal()}><a><FaGear />Edit Profile</a></li>
                                     <li onClick={handelLogOut}><a> <IoIosLogOut />Logout</a></li>
                                 </ul>
                             </div>
@@ -167,7 +167,7 @@ const NavBar = () => {
 
 
             {/* <button className="btn" >open modal</button> */}
-            <dialog id="my_modal_1" className="modal">
+            <dialog id="my_modal_2" className="modal">
                 <div className="modal-box border-2 border-green-500 bg-green-50 dark:bg-black">
                     <div
                         className=' mb-10 md:mb-0 mx-auto container flex  justify-center items-center px-2 md:px-0'>
@@ -199,8 +199,11 @@ const NavBar = () => {
                             </form>
                         </div>
                     </div>
-                    <p className='text-xs text-center'>Press Esc to close this page.</p>
+                    <p className='text-xs text-center'>Press outside or Esc to close this page.</p>
                 </div>
+                <form method="dialog" className="modal-backdrop">
+                    <button>close</button>
+                </form>
             </dialog>
         </div>
     );
