@@ -4,6 +4,7 @@ import { FaEye, FaPen } from 'react-icons/fa6';
 import { MdDeleteForever } from "react-icons/md";
 import { Link } from 'react-router-dom';
 import { userDataContext } from '../../providers/userAuthProvider/UserAuthProvider';
+import Swal from 'sweetalert2';
 
 const ManageServices = () => {
     const { currentUser } = useContext(userDataContext);
@@ -12,6 +13,44 @@ const ManageServices = () => {
         axios.get(`http://localhost:7000/current-user-services?providerEmail=${currentUser?.email}`)
             .then(data => setServices(data.data))
     }, [])
+
+    //---------------- HANDEL DELETE SERVICE---------
+    const handelDelete = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`http://localhost:7000/delete-service?_id=${id}`)
+                    .then(data => {
+                        if (data?.data?.deletedCount) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+
+                            const remainingService = services.filter(serv => serv._id !== id);
+                            setServices(remainingService);
+                        }
+                    }).catch(err => {
+                        Swal.fire({
+                            title: "Opps!",
+                            text: "Something went wrong!!",
+                            icon: "error"
+                        });
+                    })
+
+            }
+        });
+
+
+    }
     return (
         <div className='container mx-auto min-h-[100vh-112px] mt-28'>
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 px-4'>
@@ -30,7 +69,7 @@ const ManageServices = () => {
 
                             </div>
                             <div className='*:cursor-pointer  *:size-[40px] *:flex justify-center items-center space-y-4 *:rounded-lg *:text-white'>
-                                <Link  to={`/service-details/${service._id}`} className='p-3  border bg-green-800 cursor-pointer flex justify-center items-center'>
+                                <Link to={`/service-details/${service._id}`} className='p-3  border bg-green-800 cursor-pointer flex justify-center items-center'>
 
                                     <FaEye />
 
@@ -38,11 +77,11 @@ const ManageServices = () => {
                                 <Link
                                     to={`/update-service/${service._id}`}
                                     className='p-3  border bg-green-500 cursor-pointer flex justify-center items-center'>
-                                   
-                                        <FaPen></FaPen>
-                                    
+
+                                    <FaPen></FaPen>
+
                                 </Link>
-                                <div onClick={() => handelDelete()}
+                                <div onClick={() => handelDelete(service._id)}
                                     className='p-3   border bg-[#EA4744] cursor-pointer flex justify-center items-center'>
                                     <MdDeleteForever />
                                 </div>
