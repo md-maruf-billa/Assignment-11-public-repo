@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { FaCalendarDays, FaLocationDot } from 'react-icons/fa6';
 import { useLoaderData } from 'react-router-dom';
-
+import { CiClock2 } from "react-icons/ci";
+import Button from '../../components/button/Button';
+import { userDataContext } from '../../providers/userAuthProvider/UserAuthProvider';
 const ServicesDetails = () => {
+    const { currentUser } = useContext(userDataContext);
     const data = useLoaderData();
-    const { photoURL, serviceName, price, serviceArea, description, providerPhoto, providerEmail, providerName } = data;
+    const {_id, photoURL, serviceName, price, serviceArea, description, providerPhoto, providerEmail, providerName } = data;
+
+
+    const handelBookService = () => {
+
+    }
     return (
         <div className='container mx-auto min-h-[calc(100vh-112px)] mt-28'>
             <header class="bg-white dark:bg-gray-900">
@@ -15,6 +24,8 @@ const ServicesDetails = () => {
                             <p class="mt-4 text-sm text-justify text-gray-500 dark:text-gray-400 lg:text-base">{description}</p>
 
                             <div class="mt-6 space-y-3">
+
+
                                 <p className='font-rancho uppercase text-green-500'>Author-:</p>
 
                                 <div className='flex items-center gap-5'>
@@ -58,15 +69,16 @@ const ServicesDetails = () => {
 
                             <ul class="flex-1 space-y-4">
                                 <li class="text-gray-500 dark:text-gray-400">
-                                    Up to 5 projects
+                                    <p className='flex items-center gap-2'><FaLocationDot className='text-green-600' />Location:</p>
                                 </li>
 
                                 <li class="text-gray-500 dark:text-gray-400">
-                                    Up to 10 collaborators
+                                    <p className='flex items-center gap-2'><CiClock2 className='text-green-600' />Working Hour:</p>
+
                                 </li>
 
                                 <li class="text-gray-500 dark:text-gray-400">
-                                    2Gb of storage
+                                    <p className='flex items-center gap-2'><FaCalendarDays className='text-green-600' />Finish Work At:</p>
                                 </li>
                             </ul>
 
@@ -93,27 +105,22 @@ const ServicesDetails = () => {
 
                             <ul class="flex-1 space-y-4">
                                 <li class="text-gray-500 dark:text-gray-400">
-                                    Unlimited projects
+                                    <p className='flex items-center gap-2'><FaLocationDot className='text-green-600' />Location: <span className='text-green-600 font-bold'>{serviceArea}</span></p>
                                 </li>
 
                                 <li class="text-gray-500 dark:text-gray-400">
-                                    Unlimited collaborators
+                                    <p className='flex items-center gap-2'><CiClock2 className='text-green-600' />Working Hour: 8 hour /day</p>
+
                                 </li>
 
                                 <li class="text-gray-500 dark:text-gray-400">
-                                    Unlimited storage
-                                </li>
-
-                                <li class="text-gray-500 dark:text-gray-400">
-                                    Real-time collaborations
-                                </li>
-
-                                <li class="text-gray-500 dark:text-gray-400">
-                                    24x7 Support
+                                    <p className='flex items-center gap-2'><FaCalendarDays className='text-green-600' />Finish Work At: Around 7 days</p>
                                 </li>
                             </ul>
 
-                            <button class="inline-flex items-center justify-center px-4 py-2 font-medium text-white uppercase transition-colors bg-green-500 rounded-lg hover:bg-green-700 focus:outline-none">
+                            <button
+                                onClick={() => document.getElementById('my_modal_1').showModal()}
+                                class="inline-flex items-center justify-center px-4 py-2 font-medium text-white uppercase transition-colors bg-green-500 rounded-lg hover:bg-green-700 focus:outline-none">
                                 Booked Service
                             </button>
                         </div>
@@ -135,19 +142,16 @@ const ServicesDetails = () => {
 
                             <ul class="flex-1 space-y-4">
                                 <li class="text-gray-500 dark:text-gray-400">
-                                    Up to 10 projects
+                                    <p className='flex items-center gap-2'><FaLocationDot className='text-green-600' />Location:</p>
                                 </li>
 
                                 <li class="text-gray-500 dark:text-gray-400">
-                                    Up to 20 collaborators
+                                    <p className='flex items-center gap-2'><CiClock2 className='text-green-600' />Working Hour:</p>
+
                                 </li>
 
                                 <li class="text-gray-500 dark:text-gray-400">
-                                    10Gb of storage
-                                </li>
-
-                                <li class="text-gray-500 dark:text-gray-400">
-                                    Real-time collaborations
+                                    <p className='flex items-center gap-2'><FaCalendarDays className='text-green-600' />Finish Work At:</p>
                                 </li>
                             </ul>
 
@@ -160,7 +164,73 @@ const ServicesDetails = () => {
                     </div>
                 </div>
             </div>
+            {/* ---------------Start Modal hare-----for booking a service--------- */}
 
+            <dialog id="my_modal_1" className="modal">
+                <div className="modal-box border-2 border-green-500">
+                    <section className=" p-6 mx-auto bg-white rounded-md  dark:bg-gray-800 ">
+                        <h2 className="text-3xl md:text-6xl font-semibold text-green-500 capitalize dark:text-white font-rancho text-center">Booking Service</h2>
+
+                        <form onSubmit={handelBookService} className='mt-10'>
+                            <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+                                <div>
+                                    <label className="text-gray-700 dark:text-gray-200" htmlFor="Service Area">Service Id</label>
+                                    <input required name="serviceArea" defaultValue={_id} disabled type="text" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                                </div>
+                                <div>
+                                    <label className="text-gray-700 dark:text-gray-200" htmlFor="username">Image URL</label>
+                                    <input required name="photoURL" defaultValue={photoURL} disabled type="text" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                                </div>
+
+                                <div>
+                                    <label className="text-gray-700 dark:text-gray-200" htmlFor="emailAddress">Service Name</label>
+                                    <input required name="serviceName" defaultValue={serviceName} disabled type="text" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                                </div>
+
+                                <div>
+                                    <label className="text-gray-700 dark:text-gray-200" htmlFor="password">Price</label>
+                                    <input required name="price" defaultValue={price} disabled type="text" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                                </div>
+
+
+                                <div>
+                                    <label className="text-gray-700 dark:text-gray-200" htmlFor="Service Area">Service Provider Name</label>
+                                    <input required name="serviceArea" defaultValue={providerName} disabled type="text" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                                </div>
+                                <div>
+                                    <label className="text-gray-700 dark:text-gray-200" htmlFor="Service Area">Service Provider Email</label>
+                                    <input required name="serviceArea" defaultValue={providerEmail} disabled type="text" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                                </div>
+                                <div>
+                                    <label className="text-gray-700 dark:text-gray-200" htmlFor="Service Area">Customer Name</label>
+                                    <input required name="serviceArea" defaultValue={currentUser?.email} disabled type="text" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                                </div>
+                                <div>
+                                    <label className="text-gray-700 dark:text-gray-200" htmlFor="Service Area">Booking Date</label>
+                                    <input required name="serviceArea" type="date" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                                </div>
+                                <div className='col-span-2'>
+                                    <label className="text-gray-700 dark:text-gray-200" htmlFor="passwordConfirmation">Booking instruction</label>
+                                    <textarea required
+                                        name='description'
+                                        rows="4"
+                                        placeholder='Write your booking instruction ex: exact location etc' type="text" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                    {/* ------------ACTION BUTTON------------ */}
+                    <div className="flex justify-between">
+                        <form method="dialog">
+                            {/* if there is a button in form, it will close the modal */}
+                            <button className="btn btn-error btn-outline">Cancel</button>
+                        </form>
+                        <div>
+                            <button><Button btnName={"Booking Now"} /></button>
+                        </div>
+                    </div>
+                </div>
+            </dialog>
         </div>
     );
 };

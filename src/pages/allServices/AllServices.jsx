@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import Button from '../../components/button/Button';
+import { FaLocationDot } from 'react-icons/fa6';
+import { BsCurrencyDollar } from "react-icons/bs";
 
 const AllServices = () => {
 
@@ -31,7 +33,9 @@ const AllServices = () => {
                                         {service.description.slice(0, 200)} ...
                                     </p>
                                 </div>
-                                <div className='flex justify-end mt-5'>
+                                <div className='flex justify-between items-center mt-5'>
+                                    <p className='flex items-center gap-2'><FaLocationDot className='text-red-500'/> {service.serviceArea}</p>
+                                    <p className='flex items-center gap-1 font-semibold'><span>Price:</span> {service.price}<BsCurrencyDollar /> </p>
                                     <Link to={`/service-details/${service._id}`}>
                                         <Button btnName={"Details"}/>
                                     </Link>
