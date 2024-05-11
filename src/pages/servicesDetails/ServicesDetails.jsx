@@ -26,7 +26,7 @@ const ServicesDetails = () => {
         const description = currentDataForm.description.value;
         const status = "pending"
 
-        const allBookingData = { photoURL, serviceName, serviceProviderName, serviceProviderEmail, customerName, customerEmail, price, bookingDate, description,status };
+        const allBookingData = { photoURL, serviceName, serviceProviderName, serviceProviderEmail, customerName, customerEmail, price, bookingDate, description, status };
 
         axios.post("http://localhost:7000/post-booking", allBookingData)
             .then(res => {
