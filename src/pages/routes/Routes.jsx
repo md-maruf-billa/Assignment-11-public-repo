@@ -11,6 +11,7 @@ import AllServices from "../allServices/AllServices";
 import ManageServices from "../manageServices/ManageServices";
 import UpdateService from "../updateService/UpdateService";
 import BookedServices from "../bookedServices/BookedServices";
+import ServiceToDo from "../serviceToDo/ServiceToDo";
 
 const Routes = createBrowserRouter([
     {
@@ -56,6 +57,10 @@ const Routes = createBrowserRouter([
             {
                 path:"/booked-services",
                 element:<PrivetRoute><BookedServices/></PrivetRoute>
+            },
+            {
+                path:"/service-to-do",
+                element:<PrivetRoute><ServiceToDo/></PrivetRoute>
             }
         ]
     }
@@ -63,5 +68,3 @@ const Routes = createBrowserRouter([
 
 export default Routes;
 
-
-// "/service-to-do
