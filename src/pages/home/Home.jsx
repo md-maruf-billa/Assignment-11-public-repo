@@ -4,6 +4,7 @@ import ServicesCard from '../../components/servicesCard/ServicesCard';
 import axios from 'axios';
 import Button from '../../components/button/Button';
 import { Link } from 'react-router-dom';
+import PageTitle from '../../components/pageTitle/PageTitle';
 
 const Home = () => {
     const [allServices, setAllServices] = useState([]);
@@ -13,6 +14,7 @@ const Home = () => {
     }, [])
     return (
         <div>
+            <PageTitle pgTitle={"Home"}/>
             {/* --------Banner hare------------ */}
             <Slider />
 
@@ -31,7 +33,7 @@ const Home = () => {
                 {/* -------------------Card-------- */}
 
                 {
-                    !allServices ? <div className='flex justify-center items-center'><span className="loading loading-spinner text-warning"></span></div> :
+                    allServices.length==0 ? <div className='flex justify-center items-center'><span className="loading loading-spinner text-warning"></span></div> :
                         <div className='container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10  mt-20'>
                             {
                                 allServices.map(services => <ServicesCard key={services._id} services={services} />)

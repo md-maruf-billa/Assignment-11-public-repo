@@ -3,12 +3,14 @@ import { Link, useLoaderData } from 'react-router-dom';
 import Button from '../../components/button/Button';
 import { FaLocationDot } from 'react-icons/fa6';
 import { BsCurrencyDollar } from "react-icons/bs";
+import PageTitle from '../../components/pageTitle/PageTitle';
 
 const AllServices = () => {
 
     const allServices = useLoaderData();
     return (
         <div className='min-h-[calc(100vh-112px)] mt-28 container mx-auto'>
+            <PageTitle pgTitle={"All Service"}/>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-5'>
 
                 {

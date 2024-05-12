@@ -5,6 +5,9 @@ import { MdDeleteForever } from "react-icons/md";
 import { Link } from 'react-router-dom';
 import { userDataContext } from '../../providers/userAuthProvider/UserAuthProvider';
 import Swal from 'sweetalert2';
+import Lottie from 'lottie-react';
+import noData from '../../assets/animation/noData.json'
+import PageTitle from '../../components/pageTitle/PageTitle';
 
 const ManageServices = () => {
     const { currentUser } = useContext(userDataContext);
@@ -31,7 +34,7 @@ const ManageServices = () => {
                         if (data?.data?.deletedCount) {
                             Swal.fire({
                                 title: "Deleted!",
-                                text: "Your file has been deleted.",
+                                text: "Your service has been deleted.",
                                 icon: "success"
                             });
 
@@ -53,6 +56,12 @@ const ManageServices = () => {
     }
     return (
         <div className='container mx-auto min-h-[100vh-112px] mt-28'>
+            <PageTitle pgTitle={"Manage Service"}/>
+            {services.length===0? 
+            <div className='flex justify-center items-center flex-col'>
+                <Lottie className='h-[70vh]' animationData={noData}></Lottie>
+                <p className='text-3xl font-rancho text-green-500'>No Data Available</p>
+                </div>:
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 px-4'>
                 {
                     services.map(service =>
@@ -89,7 +98,7 @@ const ManageServices = () => {
                         </div>)
                 }
             </div>
-
+}
         </div>
     );
 };

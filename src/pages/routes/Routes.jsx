@@ -10,6 +10,7 @@ import ServicesDetails from "../servicesDetails/ServicesDetails";
 import AllServices from "../allServices/AllServices";
 import ManageServices from "../manageServices/ManageServices";
 import UpdateService from "../updateService/UpdateService";
+import BookedServices from "../bookedServices/BookedServices";
 
 const Routes = createBrowserRouter([
     {
@@ -51,6 +52,10 @@ const Routes = createBrowserRouter([
                 path: "/update-service/:id",
                 element: <PrivetRoute><UpdateService /></PrivetRoute>,
                 loader: ({ params }) => fetch(`http://localhost:7000/service/${params.id}`)
+            },
+            {
+                path:"/booked-services",
+                element:<PrivetRoute><BookedServices/></PrivetRoute>
             }
         ]
     }
@@ -58,7 +63,5 @@ const Routes = createBrowserRouter([
 
 export default Routes;
 
-// "/add-services
-// "/manage-services
-// "/booked-services
+
 // "/service-to-do

@@ -3,6 +3,7 @@ import Button from '../../components/button/Button';
 import { Link } from 'react-router-dom';
 import { userDataContext } from '../../providers/userAuthProvider/UserAuthProvider';
 import Swal from 'sweetalert2';
+import PageTitle from '../../components/pageTitle/PageTitle';
 
 const Login = () => {
     const { logInWithEmail,loginWithGoogle } = useContext(userDataContext);
@@ -50,6 +51,7 @@ const Login = () => {
     }
     return (
         <div className='min-h-screen flex justify-center items-center'>
+            <PageTitle pgTitle={"Login"}/>
             <div className="w-full max-w-sm md:max-w-lg p-6 m-auto mx-auto bg-white rounded-lg shadow-md dark:bg-gray-800 border border-green-500">
                 <div className="flex justify-center mx-auto">
                     <img className="size-[180px]" src="https://i.postimg.cc/nzLwNJtK/houselogo.png" alt="" />

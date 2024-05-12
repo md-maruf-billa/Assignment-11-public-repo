@@ -1,16 +1,16 @@
 import React, { useContext } from 'react';
 import Button from '../../components/button/Button';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { userDataContext } from '../../providers/userAuthProvider/UserAuthProvider';
 import Swal from 'sweetalert2'
 import { updateProfile } from 'firebase/auth';
 import auth from '../../utils/firebase/firebase.config';
+import PageTitle from '../../components/pageTitle/PageTitle';
 
 const Registration = () => {
-
     const { loginWithGoogle, signUnWithPassword, setLoading } = useContext(userDataContext);
-
-
+    const navigate = useNavigate();
+    const location = useLocation();
 
     //----------------------Google login hare-----------------
     const handelGoogleLogin = () => {
@@ -21,6 +21,7 @@ const Registration = () => {
                     text: "Your are loggedIn successfully!",
                     icon: "success"
                 });
+                navigate(location.pathname || "/")
             })
             .catch(err => {
                 Swal.fire({
@@ -54,6 +55,7 @@ const Registration = () => {
                             text: "Your Registration is successfully!",
                             icon: "success"
                         });
+                        navigate("/")
                     })
                     .catch(err => {
                         Swal.fire({
@@ -75,6 +77,7 @@ const Registration = () => {
 
     return (
         <div className='min-h-screen flex justify-center items-center mt-10 lg:mt-0'>
+            <PageTitle pgTitle={"Registration"}/>
             <div className="w-full max-w-sm md:max-w-lg p-6 m-auto mx-auto bg-white rounded-lg shadow-md dark:bg-gray-800 border border-green-500">
                 <div className="flex justify-center mx-auto">
                     <img className="size-[180px]" src="https://i.postimg.cc/nzLwNJtK/houselogo.png" alt="" />

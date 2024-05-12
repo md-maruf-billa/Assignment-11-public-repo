@@ -3,6 +3,7 @@ import Button from './../../components/button/Button';
 import { userDataContext } from '../../providers/userAuthProvider/UserAuthProvider';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import PageTitle from './../../components/pageTitle/PageTitle';
 
 const AddServices = () => {
 
@@ -46,6 +47,7 @@ const AddServices = () => {
     }
     return (
         <div className='min-h-[calc(100vh-112px)] mt-28'>
+            <PageTitle pgTitle={"Add Service"}/>
             <section className="max-w-5xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800 border border-green-500">
                 <h2 className="text-3xl md:text-6xl font-semibold text-green-500 capitalize dark:text-white font-rancho text-center">Add Your Services</h2>
 
