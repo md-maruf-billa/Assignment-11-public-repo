@@ -47,7 +47,7 @@ const Slider = () => {
                                 <h2 className='text-4xl lg:text-9xl text-green-500 font-rancho'>{slider.title}</h2>
                                 <p className='lg:text-xl container text-white text-center'>{slider.des}</p>
 
-                                <Link><Button btnName={"Order a consultation"}/></Link>
+                                <Link to="/all-services"><Button btnName={"Order a consultation"}/></Link>
                             </div>
                         </SwiperSlide>)
                 }

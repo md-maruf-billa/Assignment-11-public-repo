@@ -137,7 +137,7 @@ const Home = () => {
                         </div>
                     </div>
                     <div className={`${tab == 2 ? 'block' : 'hidden'} flex flex-col md:flex-row items-center gap-10 px-4`}>
-                    <div className='md:w-1/2'>
+                        <div className='md:w-1/2'>
                             <img className='w-full' src="./mission2.png" alt="" />
                         </div>
                         <div className='space-y-2 md:w-1/2'>
@@ -196,6 +196,33 @@ const Home = () => {
                                 <p>HAPPY CUSTOMER</p>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+
+            {/* --------------------Our Work Flow----------------- */}
+
+            <div className='container mx-auto mt-20 relative bg-[url(./lineAnimation.gif)] bg-no-repeat bg-cover'>
+                <div className='flex flex-col justify-center items-center'>
+                    <p className='text-xs'>PROCESS WORKFLOW</p>
+                    <h3 className='text-4xl md:text-5xl lg:text-7xl font-rancho text-green-500'>How It Works</h3>
+                </div>
+                <div className='flex justify-between gap-20 text-center mt-10'>
+                    <div className='flex flex-col gap-5 justify-center items-center '>
+                        <img src="https://previewthemes.com/drupal/castron/sites/default/files/gbb-uploads/icon-time.png" alt="" />
+                        <h2 className='text-2xl'>Pick A Time</h2>
+                        <p>We're available 7am-11pm and you can easily reschedule online.</p>
+                    </div>
+                    <div className='flex flex-col gap-5 justify-center items-center '>
+                        <img src="https://previewthemes.com/drupal/castron/sites/default/files/gbb-uploads/icon-phone.png" alt="" />
+                        <h2 className='text-2xl'>Book Instantly</h2>
+                        <p>We'll confirm your appointment and take care of payment electronically and securely.</p>
+                    </div>
+                    <div className='flex flex-col gap-5 justify-center items-center '>
+                        <img src="https://previewthemes.com/drupal/castron/sites/default/files/gbb-uploads/icon-pro.png" alt="" />
+                        <h2 className='text-2xl'>Your Pro Arrives</h2>
+                        <p>An experienced, fully-equipped professional will show up on time at your doorstep!</p>
                     </div>
                 </div>
             </div>
