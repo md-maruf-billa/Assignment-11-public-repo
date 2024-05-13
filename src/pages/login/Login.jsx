@@ -1,13 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from '../../components/button/Button';
 import { Link } from 'react-router-dom';
 import { userDataContext } from '../../providers/userAuthProvider/UserAuthProvider';
 import Swal from 'sweetalert2';
 import PageTitle from '../../components/pageTitle/PageTitle';
+import { FaEyeSlash } from 'react-icons/fa6';
+import { VscEye } from "react-icons/vsc";
 
 const Login = () => {
-    const { logInWithEmail,loginWithGoogle } = useContext(userDataContext);
-
+    const { logInWithEmail, loginWithGoogle } = useContext(userDataContext);
+    const [eye, setEye] = useState(true);
     const handelGoogleLogin = () => {
         loginWithGoogle()
             .then(res => {
@@ -49,9 +51,13 @@ const Login = () => {
                 });
             })
     }
+    const handelEye = () => {
+        setEye(!eye)
+    }
+
     return (
         <div className='min-h-screen flex justify-center items-center'>
-            <PageTitle pgTitle={"Login"}/>
+            <PageTitle pgTitle={"Login"} />
             <div className="w-full max-w-sm md:max-w-lg p-6 m-auto mx-auto bg-white rounded-lg shadow-md dark:bg-gray-800 border border-green-500">
                 <div className="flex justify-center mx-auto">
                     <img className="size-[180px]" src="https://i.postimg.cc/nzLwNJtK/houselogo.png" alt="" />
@@ -73,11 +79,18 @@ const Login = () => {
                             <Link className="text-xs text-green-500 dark:text-green-400 hover:underline">Forget Password?</Link>
                         </div>
 
-                        <input
-                            type="password"
-                            className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                            placeholder='Password' required name='password'
-                        />
+                        <div className='w-full'>
+                            <div className='relative'>
+                                <input name='password' className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" required type={`${eye ? "password" : "text"}`} placeholder='Password' />
+                                <div className="absolute right-2 top-1/2 -translate-y-1/2">
+                                    {
+                                        eye ? <VscEye onClick={handelEye} className='text-2xl text-[#5a5a5a] cursor-pointer'></VscEye> :
+                                            <FaEyeSlash onClick={handelEye} className='text-xl text-[#5a5a5a] cursor-pointer'></FaEyeSlash>
+                                    }
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
 
                     <div className="mt-8">
@@ -101,9 +114,9 @@ const Login = () => {
                 {/* ---------Social login--------------- */}
                 <div className="flex items-center mt-8 justify-center">
                     <div className="flex items-center gap-3 sm:gap-x-5">
-                        <button 
-                        onClick={handelGoogleLogin}
-                        className="bg-white dark:bg-gray-900 dark:border-gray-700 dark:hover:bg-gray-800 rounded-lg hover:bg-gray-100 duration-300 transition-colors border px-8 py-2.5">
+                        <button
+                            onClick={handelGoogleLogin}
+                            className="bg-white dark:bg-gray-900 dark:border-gray-700 dark:hover:bg-gray-800 rounded-lg hover:bg-gray-100 duration-300 transition-colors border px-8 py-2.5">
                             <svg className="w-5 h-5 sm:h-6 sm:w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clipPath="url(#clip0_3033_94454)">
                                     <path d="M23.766 12.2764C23.766 11.4607 23.6999 10.6406 23.5588 9.83807H12.24V14.4591H18.7217C18.4528 15.9494 17.5885 17.2678 16.323 18.1056V21.1039H20.19C22.4608 19.0139 23.766 15.9274 23.766 12.2764Z" fill="#4285F4" />

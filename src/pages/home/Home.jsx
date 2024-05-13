@@ -43,7 +43,7 @@ const Home = () => {
                     allServices.length == 0 ? <div className='flex justify-center items-center'><span className="loading loading-spinner text-warning"></span></div> :
                         <div className='container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10  mt-20'>
                             {
-                                allServices.map(services => <ServicesCard key={services._id} services={services} />)
+                                allServices.slice(0,6).map(services => <ServicesCard key={services._id} services={services} />)
                             }
 
                         </div>
@@ -203,12 +203,12 @@ const Home = () => {
 
             {/* --------------------Our Work Flow----------------- */}
 
-            <div className='container mx-auto mt-20 relative bg-[url(./lineAnimation.gif)] bg-no-repeat bg-cover'>
+            <div className='container mx-auto mt-20 relative bg-no-repeat bg-cover'>
                 <div className='flex flex-col justify-center items-center'>
                     <p className='text-xs'>PROCESS WORKFLOW</p>
                     <h3 className='text-4xl md:text-5xl lg:text-7xl font-rancho text-green-500'>How It Works</h3>
                 </div>
-                <div className='flex justify-between gap-20 text-center mt-10'>
+                <div className='flex flex-col md:flex-row justify-between gap-20 text-center mt-10'>
                     <div className='flex flex-col gap-5 justify-center items-center '>
                         <img src="https://previewthemes.com/drupal/castron/sites/default/files/gbb-uploads/icon-time.png" alt="" />
                         <h2 className='text-2xl'>Pick A Time</h2>

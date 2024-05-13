@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from '../../components/button/Button';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { userDataContext } from '../../providers/userAuthProvider/UserAuthProvider';
@@ -6,11 +6,17 @@ import Swal from 'sweetalert2'
 import { updateProfile } from 'firebase/auth';
 import auth from '../../utils/firebase/firebase.config';
 import PageTitle from '../../components/pageTitle/PageTitle';
+import { FaEyeSlash } from 'react-icons/fa6';
+import { VscEye } from "react-icons/vsc";
 
 const Registration = () => {
     const { loginWithGoogle, signUnWithPassword, setLoading } = useContext(userDataContext);
     const navigate = useNavigate();
     const location = useLocation();
+    const [passErr, setPassErr] = useState('');
+    const [strongPass, setStrongPass] = useState("");
+    const [successPass, setSuccessPass] = useState("");
+    const [eye, setEye] = useState(true);
 
     //----------------------Google login hare-----------------
     const handelGoogleLogin = () => {
@@ -41,7 +47,7 @@ const Registration = () => {
         const name = form.name.value;
         const email = form.email.value;
         const photoURL = form.photoURL.value;
-        const password = form.password.value;
+        const password = strongPass;
 
         signUnWithPassword(email, password)
             .then(res => {
@@ -75,9 +81,48 @@ const Registration = () => {
 
     }
 
+    const managePassword = (e) => {
+        const password = e.target.value;
+        if (password.length == 0) {
+            setPassErr("")
+            return
+        }
+        else if (password.length < 6) {
+            setPassErr("Password should be more then 6 character");
+            return;
+        }
+        else if (!/(?=.*[a-z])/.test(password)) {
+            setPassErr("Must be need a lower case");
+
+            return;
+        }
+        else if (!/(?=.*[A-Z])/.test(password)) {
+            setPassErr("Must be need a Upper case");
+            return;
+        }
+        else if (!/(?=.*[0-9])/.test(password)) {
+            setPassErr("Must be need a number");
+            return;
+        }
+        else if (!/(?=.*[!@#$%^&*()])/.test(password)) {
+            setPassErr("Need a special character (!@#$%^&*())");
+            return;
+        }
+
+        else {
+            setPassErr("");
+            setSuccessPass("your password is too strong")
+            setStrongPass(password)
+        }
+
+    }
+    const handelEye = () => {
+        setEye(!eye)
+    }
+
     return (
-        <div className='min-h-screen flex justify-center items-center mt-10 lg:mt-0'>
-            <PageTitle pgTitle={"Registration"}/>
+        <div className='min-h-screen flex justify-center items-center mt-10'>
+            <PageTitle pgTitle={"Registration"} />
             <div className="w-full max-w-sm md:max-w-lg p-6 m-auto mx-auto bg-white rounded-lg shadow-md dark:bg-gray-800 border border-green-500">
                 <div className="flex justify-center mx-auto">
                     <img className="size-[180px]" src="https://i.postimg.cc/nzLwNJtK/houselogo.png" alt="" />
@@ -102,7 +147,7 @@ const Registration = () => {
                             </svg>
                         </span>
 
-                        <input type="email" className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Email address" name='email' />
+                        <input required type="email" className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Email address" name='email' />
                     </div>
 
                     <div className="relative flex items-center mt-4">
@@ -115,13 +160,26 @@ const Registration = () => {
                         <input type="text" className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Photo URL" name='photoURL' />
                     </div>
                     <div className="relative flex items-center mt-4">
-                        <span className="absolute">
+                        <span className="absolute top-3 z-10">
                             <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                             </svg>
                         </span>
-
-                        <input type="password" className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Password" name='password' />
+                        <div className='w-full'>
+                            <div className='relative'>
+                                <input name='password' onChange={managePassword} className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" required type={`${eye ? "password" : "text"}`} placeholder='Password' />
+                                <div className="absolute right-2 top-1/2 -translate-y-1/2">
+                                    {
+                                        eye ? <VscEye onClick={handelEye} className='text-2xl text-[#5a5a5a] cursor-pointer'></VscEye> :
+                                            <FaEyeSlash onClick={handelEye} className='text-xl text-[#5a5a5a] cursor-pointer'></FaEyeSlash>
+                                    }
+                                </div>
+                            </div>
+                            {
+                                passErr ? <small className='-mt-10 text-red-600'>{passErr}</small> :
+                                    <small className='-mt-10 text-green-600'>{successPass}</small>
+                            }
+                        </div>
                     </div>
 
                     <div className="mt-8">
