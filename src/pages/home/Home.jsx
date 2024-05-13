@@ -205,7 +205,6 @@ const Home = () => {
 
             <div className='container mx-auto mt-20 relative bg-no-repeat bg-cover'>
                 <div className='flex flex-col justify-center items-center'>
-                    <p className='text-xs'>PROCESS WORKFLOW</p>
                     <h3 className='text-4xl md:text-5xl lg:text-7xl font-rancho text-green-500'>How It Works</h3>
                 </div>
                 <div className='flex flex-col md:flex-row justify-between gap-20 text-center mt-10'>
