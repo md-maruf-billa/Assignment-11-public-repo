@@ -119,13 +119,13 @@ const Home = () => {
 
                         <button
                             onClick={() => setTab(3)}
-                            className={`inline-flex items-center ${tab == 3 ? 'text-blue-600 border-b-2 border-blue-500' : 'text-gray-700'} h-10 px-4 -mb-px text-sm text-center  bg-transparent  sm:text-base dark:border-blue-400 dark:text-blue-300 whitespace-nowrap focus:outline-none`}>
+                            className={`inline-flex items-center ${tab == 3 ? 'text-blue-600 border-b-2 border-blue-500' : 'text-gray-700'} h-10 px-4 -mb-px text-sm text-center  bg-transparent  sm:text-base dark:border-blue-400 dark:text-white whitespace-nowrap focus:outline-none`}>
                             Mission-3
                         </button>
                     </div>
                     <div className={`${tab == 1 ? 'block' : 'hidden'} flex flex-col md:flex-row items-center gap-10 px-4`}>
                         <div className='md:w-1/2'>
-                            <img className='w-full' src="./mission1.jpg" alt="" />
+                            <img className='w-full' src="./mission1.png" alt="" />
                         </div>
                         <div className='space-y-2 md:w-1/2'>
                             <h4 className=' font-semibold text-xl'>01. Our Mission </h4>
@@ -151,7 +151,7 @@ const Home = () => {
                     </div>
                     <div className={`${tab == 3 ? 'block' : 'hidden'} flex flex-col md:flex-row items-center gap-10 px-4`}>
                         <div className='md:w-1/2'>
-                            <img className='w-full' src="./mission3.jpg" alt="" />
+                            <img className='w-full' src="./mission3.png" alt="" />
                         </div>
                         <div className='space-y-2 md:w-1/2'>
                             <h4 className=' font-semibold text-xl'>03. Our Mission </h4>
@@ -163,8 +163,8 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-                <div className='bg-white shadow-lg  lg:w-[30%] rounded-lg'>
-                    <div className='bg-green-500 py-5'>
+                <div className=' border shadow-lg  lg:w-[30%] rounded-lg'>
+                    <div className='bg-green-500 py-5 rounded-md'>
                         <h3 className='text-3xl text-center font-semibold text-white'>Our Company</h3>
                     </div>
                     <div className='flex flex-col p-8 gap-5'>

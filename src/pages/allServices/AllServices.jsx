@@ -22,7 +22,7 @@ const AllServices = () => {
                         <>
                             {
                                 allServices.map(service =>
-                                    <div key={service._id} className="rounded-md shadow-md  dark:bg-gray-50 dark:text-gray-800">
+                                    <div key={service._id} className="rounded-md shadow-md border  dark:bg-gray-50 dark:text-gray-800">
                                         <div className="flex items-center justify-between p-3">
                                             <div className="flex items-center space-x-2">
                                                 <img src={service.providerPhoto} alt="" className="object-cover object-center w-8 h-8 rounded-full shadow-sm dark:bg-gray-500 dark:border-gray-300" />
