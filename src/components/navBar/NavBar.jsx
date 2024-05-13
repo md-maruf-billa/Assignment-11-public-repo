@@ -86,7 +86,7 @@ const NavBar = () => {
             setFocus(false)
             return;
         }
-        axios.get(`http://localhost:7000/search/${e.target.value}`)
+        axios.get(import.meta.env.VITE_API_URL+`/search/${e.target.value}`)
             .then(res => {
                 setSearchData(res?.data)
                 setFocus(true);
@@ -147,7 +147,7 @@ const NavBar = () => {
                                 searchData.length == 0 ? <p>No Mach Search</p> : <div className='relative'>
 
 
-                                    <RxCross2 onClick={()=>setFocus(false)} className='absolute -top-8 right-0 text-xl cursor-pointer' />
+                                    <RxCross2 onClick={() => setFocus(false)} className='absolute -top-8 right-0 text-xl cursor-pointer' />
 
                                     {
                                         searchData?.map(data => <div key={data._id} className='mt-5' >

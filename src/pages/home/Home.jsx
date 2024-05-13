@@ -9,9 +9,10 @@ import PageTitle from '../../components/pageTitle/PageTitle';
 const Home = () => {
     const [allServices, setAllServices] = useState([]);
     useEffect(() => {
-        axios.get('https://househelphub.vercel.app/all-services')
+        axios.get(import.meta.env.VITE_API_URL+'/all-services')
             .then(res => setAllServices(res.data))
     }, [])
+    
     return (
         <div>
             <PageTitle pgTitle={"Home"}/>

@@ -38,12 +38,12 @@ const Routes = createBrowserRouter([
             {
                 path: "/service-details/:id",
                 element: <PrivetRoute><ServicesDetails /></PrivetRoute>,
-                loader: ({ params }) => fetch(`http://localhost:7000/service/${params.id}`)
+                loader: ({ params }) => fetch(import.meta.env.VITE_API_URL+`/service/${params.id}`)
             },
             {
                 path: "/all-services",
                 element: <AllServices />,
-                loader: () => fetch(`http://localhost:7000/all-services`)
+                loader: () => fetch(import.meta.env.VITE_API_URL+`/all-services`)
             },
             {
                 path: "/manage-services",
@@ -52,15 +52,15 @@ const Routes = createBrowserRouter([
             {
                 path: "/update-service/:id",
                 element: <PrivetRoute><UpdateService /></PrivetRoute>,
-                loader: ({ params }) => fetch(`http://localhost:7000/service/${params.id}`)
+                loader: ({ params }) => fetch(import.meta.env.VITE_API_URL+`/service/${params.id}`)
             },
             {
-                path:"/booked-services",
-                element:<PrivetRoute><BookedServices/></PrivetRoute>
+                path: "/booked-services",
+                element: <PrivetRoute><BookedServices /></PrivetRoute>
             },
             {
-                path:"/service-to-do",
-                element:<PrivetRoute><ServiceToDo/></PrivetRoute>
+                path: "/service-to-do",
+                element: <PrivetRoute><ServiceToDo /></PrivetRoute>
             }
         ]
     }

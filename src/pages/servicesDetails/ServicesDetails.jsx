@@ -28,7 +28,7 @@ const ServicesDetails = () => {
 
         const allBookingData = { serviceId: _id, photoURL, serviceName, serviceProviderName, serviceProviderEmail, customerName, customerEmail, price, bookingDate, description, status };
 
-        axios.post("http://localhost:7000/post-booking", allBookingData)
+        axios.post(import.meta.env.VITE_API_URL+"/post-booking", allBookingData)
             .then(res => {
                 Swal.fire({
                     title: "Congratulation",

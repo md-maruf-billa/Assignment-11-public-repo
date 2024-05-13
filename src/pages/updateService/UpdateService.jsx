@@ -8,7 +8,7 @@ import { userDataContext } from '../../providers/userAuthProvider/UserAuthProvid
 const UpdateService = () => {
     const service = useLoaderData();
     const navigate = useNavigate();
-    const {setLoading} = useContext(userDataContext);
+    const { setLoading } = useContext(userDataContext);
 
     const updateService = (e) => {
         e.preventDefault();
@@ -22,7 +22,7 @@ const UpdateService = () => {
 
 
         // ----------------SET DATA SERVER SIDE-----------------
-        axios.put(`http://localhost:7000/update-service/${service._id}`, updateData)
+        axios.put(import.meta.env.VITE_API_URL+`/update-service/${service._id}`, updateData)
 
             .then(res => {
                 if (res.data.modifiedCount) {
