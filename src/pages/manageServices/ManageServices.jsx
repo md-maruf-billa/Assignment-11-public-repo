@@ -13,9 +13,11 @@ const ManageServices = () => {
     const { currentUser } = useContext(userDataContext);
     const [services, setServices] = useState([]);
     useEffect(() => {
+        
         axios.get(import.meta.env.VITE_API_URL+`/current-user-services?providerEmail=${currentUser?.email}`)
             .then(data => setServices(data.data))
     }, [])
+    console.log(services)
 
     //---------------- HANDEL DELETE SERVICE---------
     const handelDelete = (id) => {
