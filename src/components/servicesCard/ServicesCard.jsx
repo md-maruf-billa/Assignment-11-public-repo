@@ -32,7 +32,7 @@ const ServicesCard = ({ services }) => {
 
                 </div>
             </div>
-            <div className={`w-full h-full absolute top-0 bg-slate-500 text-white rounded-lg p-4 ${hover ? 'block' : 'hidden'} `} >
+            <div className={`w-full h-full absolute top-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.5),rgba(0,0,0,0.7))] text-white rounded-lg p-4 ${hover ? 'block' : 'hidden'} `} >
                 <div className='flex items-center gap-5'>
                     <img className='size-[60px] rounded-full'  src={providerPhoto} alt="" />
                     <div>

@@ -261,7 +261,7 @@ const ServicesDetails = () => {
                                     <button className="btn btn-error btn-outline">Cancel</button>
                                 </form>
                                 <div>
-                                    <button><Button btnName={"Booking Now"} /></button>
+                                    <button type='submit'><Button btnName={"Booking Now"} /></button>
                                 </div>
                             </div>
                         </form>
