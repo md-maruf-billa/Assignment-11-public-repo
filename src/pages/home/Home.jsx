@@ -59,7 +59,7 @@ const Home = () => {
 
 
             {/* -----------------Help section---------- */}
-            <div className='container mx-auto mt-20 px-4'>
+            <div className='container mx-auto mt-32 px-4'>
                 <h3 className='text-4xl md:text-5xl lg:text-7xl font-rancho text-green-500 text-center'>What Can We Help You With?</h3>
 
                 <div className='flex flex-col md:flex-row items-center justify-between text-center gap-10 mt-8'>
@@ -96,7 +96,7 @@ const Home = () => {
 
 
             {/* -------------------About us section------ */}
-            <div className='container mx-auto flex flex-col lg:flex-row gap-10 mt-20 px-4'>
+            <div className='container mx-auto flex flex-col lg:flex-row gap-10 mt-32 px-4'>
                 <div className='w-full lg:w-[60%]'>
                     <div className='border-l-4 border-green-500 px-3'>
                         <p>About Us</p>
@@ -203,7 +203,7 @@ const Home = () => {
 
             {/* --------------------Our Work Flow----------------- */}
 
-            <div className='container mx-auto mt-20 relative bg-no-repeat bg-cover'>
+            <div className='container mx-auto mt-32 relative bg-no-repeat bg-cover'>
                 <div className='flex flex-col justify-center items-center'>
                     <h3 className='text-4xl md:text-5xl lg:text-7xl font-rancho text-green-500'>How It Works</h3>
                 </div>

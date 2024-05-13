@@ -1,23 +1,27 @@
 [
     {
-        "image":"https://previewthemes.com/drupal/castron/sites/default/files/gva-sliderlayer-upload/slider-3.jpg",
-        "title":"Professional.Friendly Courteous.",
-        "des":"Welcome to House Help Hub, the leading home renovation services provider. We have been bringing the ideas of our clients into life since 1999."
+        "image": "https://previewthemes.com/drupal/castron/sites/default/files/gva-sliderlayer-upload/slider-3.jpg",
+        "title": "Professional.Friendly Courteous.",
+        "des": "Welcome to House Help Hub, the leading home renovation services provider. We have been bringing the ideas of our clients into life since 1999."
     },
     {
-        "image":"https://i.postimg.cc/wxcmdG7J/slider-2.jpg",
-        "title":"Home renovation experience!",
-        "des":"You can fully rely on our professionals. With years of experience, they are glad to help you with any renovation."
+        "image": "https://i.postimg.cc/wxcmdG7J/slider-2.jpg",
+        "title": "Home renovation experience!",
+        "des": "You can fully rely on our professionals. With years of experience, they are glad to help you with any renovation."
     },
     {
-        "image":"https://bracketweb.com/assimoxwp/wp-content/uploads/2024/03/main-slider-bg.jpg",
-        "title":"Plumbing. Painting. Anything!",
-        "des":""
+        "image": "https://bracketweb.com/assimoxwp/wp-content/uploads/2024/03/main-slider-bg.jpg",
+        "title": "Plumbing. Painting. Anything!",
+        "des": "Your one-stop solution for all household needs. From fixing leaks to refreshing walls, we've got you covered with professional, reliable service, ensuring your home stays in top condition hassle-free."
+    },
+    {
+        "image": "https://res.cloudinary.com/jerrick/image/upload/v1605712811/5fb53babb18faf001c730577.jpg",
+        "title": "Hassle-Free Repair Solutions!",
+        "des": "Hassle-Free Repair Solutions: Say goodbye to the stress of home maintenance with our expert team. We handle everything swiftly and efficiently, leaving you with peace of mind and a perfectly functioning home"
+    },
+    {
+        "image": "https://5.imimg.com/data5/PD/DK/MY-39997932/ac-repairing-services.jpg",
+        "title": "Swift and Reliable Repair Services!",
+        "des": "Count on us for prompt and dependable solutions to your home repair needs. With our efficient team at your service, expect quick resolutions and lasting results, making your maintenance worries a thing of the past."
     }
 ]
-
-
-
-
-
-
