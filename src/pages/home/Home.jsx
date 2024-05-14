@@ -96,7 +96,7 @@ const Home = () => {
 
 
             {/* -------------------About us section------ */}
-            <div className='container mx-auto flex flex-col lg:flex-row gap-10 mt-32 px-4'>
+            <div className='container mx-auto flex flex-col justify-center items-center lg:flex-row gap-10 mt-32 px-4'>
                 <div className='w-full lg:w-[60%]'>
                     <div className='border-l-4 border-green-500 px-3'>
                         <p>About Us</p>
@@ -107,19 +107,19 @@ const Home = () => {
                     <div className="flex my-8 overflow-x-auto overflow-y-hidden border-b border-gray-200 whitespace-nowrap dark:border-gray-700">
                         <button
                             onClick={() => setTab(1)}
-                            className={`inline-flex items-center ${tab == 1 ? 'text-blue-600 border-b-2 border-blue-500' : 'text-gray-700'} h-10 px-4 -mb-px text-sm text-center  bg-transparent  sm:text-base dark:border-blue-400 dark:text-blue-300 whitespace-nowrap focus:outline-none`}>
+                            className={`inline-flex items-center ${tab == 1 ? 'text-blue-600 border-b-2 border-blue-500' : ''} h-10 px-4 -mb-px text-sm text-center  bg-transparent  sm:text-base dark:border-blue-400  whitespace-nowrap focus:outline-none`}>
                             Mission-1
                         </button>
 
                         <button
                             onClick={() => setTab(2)}
-                            className={`inline-flex items-center ${tab == 2 ? 'text-blue-600 border-b-2 border-blue-500' : 'text-gray-700'} h-10 px-4 -mb-px text-sm text-center  bg-transparent  sm:text-base dark:border-blue-400 dark:text-blue-300 whitespace-nowrap focus:outline-none`}>
+                            className={`inline-flex items-center ${tab == 2 ? 'text-blue-600 border-b-2 border-blue-500' : ''} h-10 px-4 -mb-px text-sm text-center  bg-transparent  sm:text-base dark:border-blue-400  whitespace-nowrap focus:outline-none`}>
                             Mission-2
                         </button>
 
                         <button
                             onClick={() => setTab(3)}
-                            className={`inline-flex items-center ${tab == 3 ? 'text-blue-600 border-b-2 border-blue-500' : 'text-gray-700'} h-10 px-4 -mb-px text-sm text-center  bg-transparent  sm:text-base dark:border-blue-400 dark:text-white whitespace-nowrap focus:outline-none`}>
+                            className={`inline-flex items-center ${tab == 3 ? 'text-blue-600 border-b-2 border-blue-500' : ''} h-10 px-4 -mb-px text-sm text-center  bg-transparent  sm:text-base dark:border-blue-400 whitespace-nowrap focus:outline-none`}>
                             Mission-3
                         </button>
                     </div>
@@ -163,33 +163,33 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-                <div className=' border shadow-lg  lg:w-[30%] rounded-lg'>
+                <div className=' border shadow-lg h-fit  lg:w-[30%] rounded-lg'>
                     <div className='bg-green-500 py-5 rounded-md'>
                         <h3 className='text-3xl text-center font-semibold text-white'>Our Company</h3>
                     </div>
                     <div className='flex flex-col p-8 gap-5'>
-                        <div className='flex items-center gap-3 border-b py-1'>
+                        <div className='flex items-center gap-3 border-b py-2'>
                             <FaUsers className='text-6xl rounded-full p-4 text-white bg-[#fc6e5a]' />
                             <div>
                                 <h3 className='text-2xl font-semibold'>800</h3>
                                 <p>SERVICE TECHNICIANS</p>
                             </div>
                         </div>
-                        <div className='flex items-center gap-3 border-b py-1'>
+                        <div className='flex items-center gap-3 border-b py-2'>
                             <GiFireworkRocket className='text-6xl rounded-full p-4 text-white bg-[#3caee0]' />
                             <div>
                                 <h3 className='text-2xl font-semibold'>500</h3>
                                 <p>REPAIRS IN 12 MONTHS</p>
                             </div>
                         </div>
-                        <div className='flex items-center gap-3 border-b py-1'>
+                        <div className='flex items-center gap-3 border-b py-2'>
                             <FaClock className='text-6xl rounded-full p-4 text-white bg-[#8dbf66]' />
                             <div>
                                 <h3 className='text-2xl font-semibold'>10</h3>
                                 <p>YEARS EXPERIENCE</p>
                             </div>
                         </div>
-                        <div className='flex items-center gap-3 border-b'>
+                        <div className='flex items-center gap-3 border-b py-2'>
                             <AiFillLike className='text-6xl rounded-full p-4 text-white bg-[#fbcb5f]' />
                             <div>
                                 <h3 className='text-2xl font-semibold'>1200</h3>
@@ -203,7 +203,7 @@ const Home = () => {
 
             {/* --------------------Our Work Flow----------------- */}
 
-            <div className='container mx-auto mt-32 relative bg-no-repeat bg-cover'>
+            <div className='container mx-auto mt-32 relative bg-no-repeat bg-cover px-4'>
                 <div className='flex flex-col justify-center items-center'>
                     <h3 className='text-4xl md:text-5xl lg:text-7xl font-rancho text-green-500'>How It Works</h3>
                 </div>
