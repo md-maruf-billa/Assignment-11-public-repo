@@ -58,7 +58,10 @@ const Login = () => {
     return (
         <div className='min-h-screen flex justify-center items-center'>
             <PageTitle pgTitle={"Login"} />
-            <div className="w-full max-w-sm md:max-w-lg p-6 m-auto mx-auto bg-white rounded-lg shadow-md dark:bg-gray-800 border border-green-500">
+            <div
+                data-aos="zoom-in-up"
+                data-aos-duration="1000"
+                className="w-full max-w-sm md:max-w-lg p-6 m-auto mx-auto bg-white rounded-lg shadow-md dark:bg-gray-800 border border-green-500">
                 <div className="flex justify-center mx-auto">
                     <img className="size-[180px]" src="https://i.postimg.cc/nzLwNJtK/houselogo.png" alt="" />
                 </div>

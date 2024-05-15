@@ -12,7 +12,7 @@ const BookedServices = () => {
     const { currentUser, setLoading } = useContext(userDataContext);
     const [bookedServices, setBookedServices] = useState([]);
     useEffect(() => {
-        axios.get(import.meta.env.VITE_API_URL+`/booking-services?customerEmail=${currentUser.email}`)
+        axios.get(import.meta.env.VITE_API_URL + `/booking-services?customerEmail=${currentUser.email}`)
             .then(data => setBookedServices(data.data))
             .catch(err => {
 
@@ -30,7 +30,7 @@ const BookedServices = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(import.meta.env.VITE_API_URL+`/delete-booking?_id=${id}`)
+                axios.delete(import.meta.env.VITE_API_URL + `/delete-booking?_id=${id}`)
                     .then(data => {
                         if (data?.data?.deletedCount) {
                             Swal.fire({
@@ -58,7 +58,7 @@ const BookedServices = () => {
 
     //----------------Handel update status---------------
     const updateStatus = (id) => {
-        axios.put(import.meta.env.VITE_API_URL+`/update-booking/${id}`, { currentStatus: "completed" })
+        axios.put(import.meta.env.VITE_API_URL + `/update-booking/${id}`, { currentStatus: "completed" })
             .then(data => {
                 Swal.fire({
                     title: "Congratulation",
@@ -85,7 +85,10 @@ const BookedServices = () => {
                 </div> :
                     <div>
 
-                        <section class="container px-4 mx-auto">
+                        <section
+                            data-aos="zoom-in-up"
+                            data-aos-duration="1000"
+                            class="container px-4 mx-auto">
                             <div class="flex items-center gap-x-3">
                                 <h2 class="text-lg font-medium text-gray-800 dark:text-white">Total Booked</h2>
 
@@ -139,8 +142,13 @@ const BookedServices = () => {
 
                                                     {
                                                         bookedServices.map(booked =>
-                                                            <tr key={booked._id}>
-                                                                <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                                                            <tr
+                                                                data-aos="zoom-in-up"
+                                                                data-aos-duration="1000"
+                                                                key={booked._id}>
+                                                                <td
+
+                                                                    class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                                                                     <div class="inline-flex items-center gap-x-3">
 
 
@@ -193,7 +201,7 @@ const BookedServices = () => {
                                 </div>
                             </div>
 
-                           
+
                         </section>
                     </div>
             }

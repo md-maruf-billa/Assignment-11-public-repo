@@ -12,13 +12,13 @@ const ServiceToDo = () => {
     const { currentUser, setLoading } = useContext(userDataContext);
     const [bookedServices, setBookedServices] = useState([]);
     useEffect(() => {
-        axios.get(import.meta.env.VITE_API_URL+`/booking-services?serviceProviderEmail=${currentUser.email}`)
+        axios.get(import.meta.env.VITE_API_URL + `/booking-services?serviceProviderEmail=${currentUser.email}`)
             .then(data => setBookedServices(data.data))
     }, [])
 
     const updateStatus = (statusInfo, id) => {
         if (statusInfo == 'accept') {
-            axios.put(import.meta.env.VITE_API_URL+`/update-booking/${id}`, { currentStatus: "working" })
+            axios.put(import.meta.env.VITE_API_URL + `/update-booking/${id}`, { currentStatus: "working" })
                 .then(data => {
                     Swal.fire({
                         title: "Congratulation",
@@ -36,7 +36,7 @@ const ServiceToDo = () => {
                 })
         }
         if (statusInfo == 'reject') {
-            axios.put(import.meta.env.VITE_API_URL+`/update-booking/${id}`, { currentStatus: "reject" })
+            axios.put(import.meta.env.VITE_API_URL + `/update-booking/${id}`, { currentStatus: "reject" })
                 .then(data => {
                     Swal.fire({
                         title: "Congratulation",
@@ -64,7 +64,10 @@ const ServiceToDo = () => {
                 </div> :
                     <div>
 
-                        <section class="container px-4 mx-auto">
+                        <section
+                            data-aos="zoom-in-up"
+                            data-aos-duration="1000"
+                            class="container px-4 mx-auto">
                             <div class="flex items-center gap-x-3">
                                 <h2 class="text-lg font-medium text-gray-800 dark:text-white">Total Order</h2>
 
@@ -118,7 +121,10 @@ const ServiceToDo = () => {
 
                                                     {
                                                         bookedServices.map(booked =>
-                                                            <tr key={booked._id}>
+                                                            <tr
+                                                                data-aos="zoom-in-up"
+                                                                data-aos-duration="1000"
+                                                                key={booked._id}>
                                                                 <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                                                                     <div class="inline-flex items-center gap-x-3">
 
@@ -170,7 +176,7 @@ const ServiceToDo = () => {
                                 </div>
                             </div>
 
-                            
+
                         </section>
                     </div>
             }

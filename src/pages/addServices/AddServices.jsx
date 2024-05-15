@@ -47,33 +47,36 @@ const AddServices = () => {
     }
     return (
         <div className='min-h-[calc(100vh-112px)] mt-28'>
-            <PageTitle pgTitle={"Add Service"}/>
-            <section className="max-w-5xl p-6 mx-auto rounded-md shadow-md border border-green-500">
+            <PageTitle pgTitle={"Add Service"} />
+            <section
+                data-aos="zoom-in-up"
+                data-aos-duration="1000"
+                className="max-w-5xl p-6 mx-auto rounded-md shadow-md border border-green-500">
                 <h2 className="text-3xl md:text-6xl font-semibold text-green-500 capitalize font-rancho text-center">Add Your Services</h2>
 
                 <form onSubmit={handelAddService} className='mt-10'>
                     <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                         <div>
-                            <label  htmlFor="username">Image URL</label>
+                            <label htmlFor="username">Image URL</label>
                             <input required name="photoURL" placeholder='Image URL' type="text" className="block w-full px-4 py-2 mt-2   border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring" />
                         </div>
 
                         <div>
-                            <label  htmlFor="emailAddress">Service Name</label>
+                            <label htmlFor="emailAddress">Service Name</label>
                             <input required name="serviceName" placeholder='Service Name' type="text" className="block w-full px-4 py-2 mt-2   border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring" />
                         </div>
 
                         <div>
-                            <label  htmlFor="password">Price</label>
+                            <label htmlFor="password">Price</label>
                             <input required name="price" placeholder='Price' type="text" className="block w-full px-4 py-2 mt-2   border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring" />
                         </div>
 
                         <div>
-                            <label  htmlFor="Service Area">Service Area</label>
+                            <label htmlFor="Service Area">Service Area</label>
                             <input required name="serviceArea" placeholder='Service Area' type="text" className="block w-full px-4 py-2 mt-2   border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring" />
                         </div>
                         <div className='col-span-2'>
-                            <label  htmlFor="passwordConfirmation">Description</label>
+                            <label htmlFor="passwordConfirmation">Description</label>
                             <textarea required
                                 name='description'
                                 rows="5"

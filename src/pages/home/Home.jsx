@@ -30,8 +30,16 @@ const Home = () => {
 
             <div className='mt-20 px-5'>
                 <div className='flex items-center justify-center gap-7'>
-                    <img className='w-[25%] md:w-auto' src="https://renovation.thememove.com/data/images/services_page_title.png" alt="" />
-                    <div className='w-3/4 md:w-1/2 text-center'>
+                    <img
+                        data-aos="fade-left"
+                        data-aos-duration="1500"
+                        className='w-[25%] md:w-auto'
+                        src="https://renovation.thememove.com/data/images/services_page_title.png"
+                        alt="" />
+                    <div
+                        data-aos="fade-right"
+                        data-aos-duration="1500"
+                        className='w-3/4 md:w-1/2 text-center'>
                         <h2 className='text-4xl md:text-5xl lg:text-7xl font-rancho text-green-500 '>Professional Services </h2>
                         <p className='text-xs md:text-base '>Every home owner has a list of renovation, home repair, or home improvement projects he or she needs done both interior and exterior. Sometimes that list can get quite long, too! The bathrooms that needs updating.</p>
                     </div>
@@ -43,7 +51,7 @@ const Home = () => {
                     allServices.length == 0 ? <div className='flex justify-center items-center'><span className="loading loading-spinner text-warning"></span></div> :
                         <div className='container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10  mt-20'>
                             {
-                                allServices.slice(0,6).map(services => <ServicesCard key={services._id} services={services} />)
+                                allServices.slice(0, 6).map(services => <ServicesCard key={services._id} services={services} />)
                             }
 
                         </div>
@@ -51,7 +59,10 @@ const Home = () => {
             </div>
 
             {/* ---------------See all services------------------ */}
-            <div className='flex justify-center items-center mt-10'>
+            <div
+                data-aos="zoom-in-up"
+                data-aos-duration="1000"
+                className='flex justify-center items-center mt-10'>
                 <Link to={"/all-services"}>
                     <Button btnName={"See all Services"} />
                 </Link>
@@ -60,10 +71,16 @@ const Home = () => {
 
             {/* -----------------Help section---------- */}
             <div className='container mx-auto mt-32 px-4'>
-                <h3 className='text-4xl md:text-5xl lg:text-7xl font-rancho text-green-500 text-center'>What Can We Help You With?</h3>
+                <h3
+                    data-aos="zoom-in-up"
+                    data-aos-duration="1000"
+                    className='text-4xl md:text-5xl lg:text-7xl font-rancho text-green-500 text-center'>What Can We Help You With?</h3>
 
                 <div className='flex flex-col md:flex-row items-center justify-between text-center gap-10 mt-8'>
-                    <div className='space-y-20'>
+                    <div
+                        data-aos="fade-left"
+                        data-aos-duration="1000"
+                        className='space-y-20'>
                         <div className='flex flex-col items-center justify-center gap-2'>
                             <FaFire className='text-red-600 text-7xl p-4 border rounded-full bg-[#ffe2db]' />
                             <h4 className='text-xl font-semibold'>Energy</h4>
@@ -75,10 +92,16 @@ const Home = () => {
                             <p>Protect your boiler, heating, appliances, electricals, plumbing and drains.</p>
                         </div>
                     </div>
-                    <div>
+                    <div
+                        data-aos="zoom-in-up"
+                        data-aos-duration="1000"
+                    >
                         <img src="./service.png" alt="" />
                     </div>
-                    <div className='space-y-20'>
+                    <div
+                        data-aos="fade-right"
+                        data-aos-duration="1000"
+                        className='space-y-20'>
                         <div className='flex flex-col items-center justify-center gap-2'>
                             <HiMiniRocketLaunch className='text-[#597ef0] text-7xl p-4 border rounded-full bg-[#eaf0fe]' />
                             <h4 className='text-xl font-semibold'>Smart Homes</h4>
@@ -97,14 +120,27 @@ const Home = () => {
 
             {/* -------------------About us section------ */}
             <div className='container mx-auto flex flex-col justify-center items-center lg:flex-row gap-10 mt-32 px-4'>
-                <div className='w-full lg:w-[60%]'>
-                    <div className='border-l-4 border-green-500 px-3'>
-                        <p>About Us</p>
-                        <h2 className='text-4xl md:text-5xl lg:text-7xl font-rancho text-green-500'>Overview Mission and Client</h2>
+                <div
+                    className='w-full lg:w-[60%]'>
+                    <div
+                        data-aos="fade-left"
+                        data-aos-duration="1000"
+                        className='border-l-4 border-green-500 px-3'>
+                        <p
+                            data-aos="zoom-in-down"
+                            data-aos-duration="1000"
+                        >About Us</p>
+                        <h2
+                            data-aos="zoom-in-up"
+                            data-aos-duration="1000"
+                            className='text-4xl md:text-5xl lg:text-7xl font-rancho text-green-500'>Overview Mission and Client</h2>
                     </div>
 
                     {/* -----------tab----------- */}
-                    <div className="flex my-8 overflow-x-auto overflow-y-hidden border-b border-gray-200 whitespace-nowrap dark:border-gray-700">
+                    <div
+                        data-aos="zoom-in-up"
+                        data-aos-duration="1000"
+                        className="flex my-8 overflow-x-auto overflow-y-hidden border-b border-gray-200 whitespace-nowrap dark:border-gray-700">
                         <button
                             onClick={() => setTab(1)}
                             className={`inline-flex items-center ${tab == 1 ? 'text-blue-600 border-b-2 border-blue-500' : ''} h-10 px-4 -mb-px text-sm text-center  bg-transparent  sm:text-base dark:border-blue-400  whitespace-nowrap focus:outline-none`}>
@@ -163,7 +199,10 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-                <div className=' border shadow-lg h-fit  lg:w-[30%] rounded-lg'>
+                <div
+                    data-aos="zoom-in-up"
+                    data-aos-duration="1000"
+                    className=' border shadow-lg h-fit  lg:w-[30%] rounded-lg'>
                     <div className='bg-green-500 py-5 rounded-md'>
                         <h3 className='text-3xl text-center font-semibold text-white'>Our Company</h3>
                     </div>
@@ -205,20 +244,32 @@ const Home = () => {
 
             <div className='container mx-auto mt-32 relative bg-no-repeat bg-cover px-4'>
                 <div className='flex flex-col justify-center items-center'>
-                    <h3 className='text-4xl md:text-5xl lg:text-7xl font-rancho text-green-500'>How It Works</h3>
+                    <h3
+                        data-aos="zoom-in-up"
+                        data-aos-duration="1000"
+                        className='text-4xl md:text-5xl lg:text-7xl font-rancho text-green-500'>How It Works</h3>
                 </div>
                 <div className='flex flex-col md:flex-row justify-between gap-20 text-center mt-10'>
-                    <div className='flex flex-col gap-5 justify-center items-center '>
+                    <div
+                        data-aos="zoom-in-up"
+                        data-aos-duration="1000"
+                        className='flex flex-col gap-5 justify-center items-center '>
                         <img src="https://previewthemes.com/drupal/castron/sites/default/files/gbb-uploads/icon-time.png" alt="" />
                         <h2 className='text-2xl'>Pick A Time</h2>
                         <p>We're available 7am-11pm and you can easily reschedule online.</p>
                     </div>
-                    <div className='flex flex-col gap-5 justify-center items-center '>
+                    <div
+                        data-aos="zoom-in-up"
+                        data-aos-duration="1000"
+                        className='flex flex-col gap-5 justify-center items-center '>
                         <img src="https://previewthemes.com/drupal/castron/sites/default/files/gbb-uploads/icon-phone.png" alt="" />
                         <h2 className='text-2xl'>Book Instantly</h2>
                         <p>We'll confirm your appointment and take care of payment electronically and securely.</p>
                     </div>
-                    <div className='flex flex-col gap-5 justify-center items-center '>
+                    <div
+                        data-aos="zoom-in-up"
+                        data-aos-duration="1000"
+                        className='flex flex-col gap-5 justify-center items-center '>
                         <img src="https://previewthemes.com/drupal/castron/sites/default/files/gbb-uploads/icon-pro.png" alt="" />
                         <h2 className='text-2xl'>Your Pro Arrives</h2>
                         <p>An experienced, fully-equipped professional will show up on time at your doorstep!</p>

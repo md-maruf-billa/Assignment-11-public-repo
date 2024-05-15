@@ -16,6 +16,8 @@ const ServicesCard = ({ services }) => {
         <div
             onMouseOver={mouseOverEvent}
             onMouseOut={mouseOverEventOut}
+            data-aos="zoom-in-up"
+            data-aos-duration="1500"
             className="flex flex-col items-center justify-center w-full  mx-auto relative">
             <div className="w-full h-64 relative bg-gray-300 bg-center bg-cover rounded-lg shadow-md" style={{ backgroundImage: `url(${photoURL})` }}>
 

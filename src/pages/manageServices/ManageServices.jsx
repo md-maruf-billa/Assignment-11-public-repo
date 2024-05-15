@@ -69,7 +69,10 @@ const ManageServices = () => {
                         services.map(service =>
                             <div
                                 // data-aos="zoom-in-up" data-aos-duration="1000"
-                                key={service._id} className='border-green-500 border  p-5 space-y-3 rounded-md z-0'>
+                                key={service._id}
+                                data-aos="zoom-in-up"
+                                data-aos-duration="1000"
+                                className='border-green-500 border  p-5 space-y-3 rounded-md z-0'>
                                 <div>
                                     <img className='w-full h-[200px] rounded-lg' src={service?.photoURL} alt="" />
                                 </div>

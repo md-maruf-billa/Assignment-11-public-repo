@@ -8,23 +8,23 @@ import Lottie from 'lottie-react';
 import noData from '../../assets/animation/noData.json';
 import axios from 'axios';
 const AllServices = () => {
-    const [displayService , setDisplayServices] = useState([]);
+    const [displayService, setDisplayServices] = useState([]);
     const allServices = useLoaderData();
     const totalData = allServices.length;
     const [dataParPage, setDataParPage] = useState(6);
     const totalPage = Math.ceil(totalData / dataParPage);
-    const [currentPage , setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
     const pages = [];
     for (let i = 0; i < totalPage; i++) {
         pages.push(i + 1)
     }
 
-    useEffect(()=>{
-        axios.get(import.meta.env.VITE_API_URL+`/all-services?size=${dataParPage}&page=${currentPage-1}`)
-        .then(data =>{
-            setDisplayServices(data.data);
-        })
-    },[dataParPage,currentPage])
+    useEffect(() => {
+        axios.get(import.meta.env.VITE_API_URL + `/all-services?size=${dataParPage}&page=${currentPage - 1}`)
+            .then(data => {
+                setDisplayServices(data.data);
+            })
+    }, [dataParPage, currentPage])
     //--------------------Handel Pagination ----------------
 
     return (
@@ -40,7 +40,10 @@ const AllServices = () => {
                         <>
                             {
                                 displayService.map(service =>
-                                    <div key={service._id} className="rounded-md shadow-md border  dark:bg-gray-50 dark:text-gray-800">
+                                    <div key={service._id}
+                                        data-aos="zoom-in-up"
+                                        data-aos-duration="1000"
+                                        className="rounded-md shadow-md border  dark:bg-gray-50 dark:text-gray-800">
                                         <div className="flex items-center justify-between p-3">
                                             <div className="flex items-center space-x-2">
                                                 <img src={service.providerPhoto} alt="" className="object-cover object-center w-8 h-8 rounded-full shadow-sm dark:bg-gray-500 dark:border-gray-300" />
@@ -77,14 +80,14 @@ const AllServices = () => {
                 <div className="join">
                     {
                         pages.map(pg => <button
-                            onClick={()=> setCurrentPage(pg)}
-                            className={`join-item btn btn-square ${currentPage == pg ? "btn-secondary":""}`} 
-                            
-                            >{pg}</button>)
+                            onClick={() => setCurrentPage(pg)}
+                            className={`join-item btn btn-square ${currentPage == pg ? "btn-secondary" : ""}`}
+
+                        >{pg}</button>)
                     }
 
                 </div>
-                <select onChange={(e) => {setDataParPage(e.target.value), setCurrentPage(1)}} className="select select-bordered">
+                <select onChange={(e) => { setDataParPage(e.target.value), setCurrentPage(1) }} className="select select-bordered">
                     <option disabled selected>Par Page</option>
                     <option>6</option>
                     <option>9</option>

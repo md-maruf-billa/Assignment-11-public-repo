@@ -27,4 +27,5 @@
 - React Tooltip
 - SweetAlert2
 - Swiper
+- AOS
 

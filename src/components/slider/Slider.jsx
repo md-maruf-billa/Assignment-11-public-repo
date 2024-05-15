@@ -36,6 +36,8 @@ const Slider = () => {
                 navigation={true}
                 modules={[Autoplay, Pagination, Navigation]}
                 className="min-h-screen"
+                data-aos="zoom-in-up"
+                
             >
 
                 {
