@@ -202,12 +202,12 @@ const ServicesDetails = () => {
             {/* ---------------Start Modal hare-----for booking a service--------- */}
 
             <dialog id="my_modal_1" className="modal ">
-                <div className="modal-box border-2  border-green-500 w-[1000px]">
+                <div className="modal-box border-2  border-green-500 lg:w-[1000px]">
                     <section className=" p-6 mx-auto  rounded-md ">
                         <h2 className="text-3xl md:text-6xl font-semibold text-green-500 capitalize dark:text-white font-rancho text-center">Booking Service</h2>
 
                         <form onSubmit={handelBookService} className='mt-10'>
-                            <div className="md:grid lg:grid-cols-2 space-y-3 md:space-y-0 gap-5 mt-4">
+                            <div className="lg:grid grid-cols-2 space-y-3 md:space-y-0 gap-5 mt-4">
 
                                 <div>
                                     <span className='relative'><label className="text-gray-700  " htmlFor="username">Image URL</label> <RxCrossCircled className='absolute bottom-3 -right-4 text-red-600 text-xs' /></span>

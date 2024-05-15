@@ -19,7 +19,7 @@ const NavBar = () => {
     const { currentUser, logOutUser, setLoading } = useContext(userDataContext);
     const [searchData, setSearchData] = useState([]);
     const [inputValue, setInputValue] = useState("");
-    // const [uploadPhoto, setUploadPhoto] = useState();
+    const [openSearch, setOpenSearch] = useState(false);
     const [theme, setTheme] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light')
     //-------------Log out user---------
     const handelLogOut = () => {
@@ -43,7 +43,7 @@ const NavBar = () => {
     //---------------update Profile---------------
     const handelEditProfile = (e) => {
         e.preventDefault();
-        
+
         updateProfile(auth.currentUser, {
             displayName: e.target.name.value ? e.target.name.value : e.target.name.placeholder,
             photoURL: e.target.photoURL.value ? e.target.photoURL.value : e.target.photoURL.placeholder
@@ -103,6 +103,7 @@ const NavBar = () => {
     const closeWindow = () => {
         setInputValue('')
         setSearchData([]);
+        setOpenSearch(false)
     }
 
 
@@ -138,7 +139,7 @@ const NavBar = () => {
                             {navItems}
                         </ul>
                     </div>
-                    <Link to={"/"} className='flex items-center cursor-pointer'>
+                    <Link to={"/"} className='items-center cursor-pointer hidden md:flex'>
                         <img className='size-[80px]' src="https://i.postimg.cc/nzLwNJtK/houselogo.png" alt="" />
                         <p className="text-3xl font-rancho">H.H.H</p>
                     </Link>
@@ -149,40 +150,55 @@ const NavBar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end gap-5">
-                    <div className='relative hidden md:block'>
-                        <label className="input input-bordered bg-transparent flex items-center gap-2">
+                    <div className='relative'>
+                        <label className="input input-bordered bg-transparent items-center gap-2 hidden md:flex">
                             <input onChange={handelSearch} type="text" className="grow " value={inputValue} placeholder="Search" />
                             {inputValue == 0 ? <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4 opacity-70"><path fillRule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clipRule="evenodd" /></svg> :
                                 <RxCross2 onClick={closeWindow} className='z-50 text-xl cursor-pointer' />}
                         </label>
+                        <svg
+                            onClick={() => setOpenSearch(!openSearch)}
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="size-6 opacity-70 md:hidden"><path fillRule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clipRule="evenodd" />
+                        </svg>
+
+
+
+
                         <div
-                            className={`${inputValue ? "" : 'hidden'} min-h-[300px] max-h-[50vh] overflow-y-auto w-[600px] absolute bg-base-100 top-20 right-0 z-50 p-5 rounded-md`}>
+                            className={`${inputValue || openSearch ? "" : 'hidden'} min-h-[300px] max-h-[50vh] overflow-y-auto w-[350px] md:w-[600px] absolute bg-base-100  top-20 -right-[100px] md:right-0 z-50 p-5 rounded-md`}>
+                            <label className="input input-bordered bg-transparent items-center gap-2 flex md:hidden">
+                                <input onChange={handelSearch} type="text" className="grow " value={inputValue} placeholder="Search" />
+                                {inputValue == 0 ? <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4 opacity-70"><path fillRule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clipRule="evenodd" /></svg> :
+                                    <RxCross2 onClick={closeWindow} className='z-50 text-xl cursor-pointer' />}
+                            </label>
                             {
                                 searchData.length === 0 ? <div>
 
                                     <Lottie className='h-[300px]' animationData={notFound}></Lottie>
                                     <p className='text-center'>No Data Found</p>
-                                </div> : <div className='relative'>
+                                </div> :
+                                    <div className='relative'>
 
-                                    {
-                                        searchData?.map(data => <div key={data._id} className='mt-5' >
-                                            <div className='grid grid-cols-8 items-center gap-5 mt-3 border border-green-400 p-2 rounded-md'>
-                                                <img className='size-[30px] rounded-full' src={data?.photoURL} alt="" />
-                                                <div className='col-span-6'>
-                                                    <h2 className=''>{data?.serviceName}</h2>
-                                                    <p className='flex items-center gap-2 text-xs'><FaLocationDot className='text-red-500' /> {data?.serviceArea}</p>
-                                                </div>
-                                                <div className='flex justify-end'>
-                                                    <Link
-                                                        onClick={closeWindow}
-                                                        className='btn btn-xs btn-success text-white' to={`/service-details/${data._id}`}>
-                                                        View More
-                                                    </Link>
-                                                </div>
-                                            </div>
-                                        </div>)
-                                    }
-                                </div>
+                                        {
+                                            searchData?.map(data =>
+                                                <div key={data._id} className='mt-5' >
+                                                    <div className='grid grid-cols-6 md:grid-cols-8 items-center gap-5 mt-3 border border-green-400 p-2 rounded-md'>
+                                                        <img className='size-[30px] rounded-full' src={data?.photoURL} alt="" />
+                                                        <div className='col-span-4'>
+                                                            <h2 className=''>{data?.serviceName}</h2>
+                                                            <p className='flex items-center gap-2 text-xs'><FaLocationDot className='text-red-500' /> {data?.serviceArea}</p>
+                                                        </div>
+                                                        <div className='flex justify-end'>
+                                                            <Link
+                                                                onClick={closeWindow}
+                                                                className='btn btn-xs btn-success text-white' to={`/service-details/${data._id}`}>
+                                                                View More
+                                                            </Link>
+                                                        </div>
+                                                    </div>
+                                                </div>)
+                                        }
+                                    </div>
                             }
                         </div>
                     </div>
