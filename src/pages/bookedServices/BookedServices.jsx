@@ -182,7 +182,7 @@ const BookedServices = () => {
                                                                         </button>
                                                                         <button
                                                                             onClick={() => updateStatus(booked._id)}
-                                                                            className={`text-xl ${booked.status == "reject" || booked.status == 'completed' ? "btn-disabled text-gray-400" : "text-green-600"}`}>
+                                                                            className={`text-xl ${booked.status == "reject" || booked.status == 'completed' || booked.status == 'pending' ? "btn-disabled text-gray-400" : "text-green-600"}`}>
                                                                             <FaCheck></FaCheck>
                                                                         </button>
                                                                         <Link to={`/service-details/${booked.serviceId}`}>

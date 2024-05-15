@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import Button from '../../components/button/Button';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { userDataContext } from '../../providers/userAuthProvider/UserAuthProvider';
 import Swal from 'sweetalert2';
 import PageTitle from '../../components/pageTitle/PageTitle';
@@ -9,7 +9,9 @@ import { VscEye } from "react-icons/vsc";
 
 const Login = () => {
     const { logInWithEmail, loginWithGoogle } = useContext(userDataContext);
+    const location = useLocation();
     const [eye, setEye] = useState(true);
+    const navigate = useNavigate()
     const handelGoogleLogin = () => {
         loginWithGoogle()
             .then(res => {
@@ -18,6 +20,7 @@ const Login = () => {
                     text: "Your are loggedIn successfully!",
                     icon: "success"
                 });
+                navigate(location.pathname || "/")
             })
             .catch(err => {
                 Swal.fire({
@@ -42,6 +45,7 @@ const Login = () => {
                     text: "Your Registration is successfully!",
                     icon: "success"
                 });
+                navigate(location.pathname || "/")
             })
             .catch(err => {
                 Swal.fire({

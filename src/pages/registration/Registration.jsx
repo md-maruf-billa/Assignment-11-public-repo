@@ -61,7 +61,7 @@ const Registration = () => {
                             text: "Your Registration is successfully!",
                             icon: "success"
                         });
-                        navigate("/")
+                        navigate(location.pathname || "/")
                     })
                     .catch(err => {
                         Swal.fire({
