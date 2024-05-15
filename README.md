@@ -10,6 +10,7 @@
 - User can see easily her product status and he also change working status.
 - User easily find her needed services using search option.
 - User update her profile easily.
+- Have a pagination option . user Easily customize his own choose.
 - User easily delete working request or accept working request and when her work done he/she can change har status complete.
 
 

@@ -19,6 +19,7 @@ const NavBar = () => {
     const { currentUser, logOutUser, setLoading } = useContext(userDataContext);
     const [searchData, setSearchData] = useState([]);
     const [inputValue, setInputValue] = useState("");
+    // const [uploadPhoto, setUploadPhoto] = useState();
     const [theme, setTheme] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light')
     //-------------Log out user---------
     const handelLogOut = () => {
@@ -42,6 +43,7 @@ const NavBar = () => {
     //---------------update Profile---------------
     const handelEditProfile = (e) => {
         e.preventDefault();
+        
         updateProfile(auth.currentUser, {
             displayName: e.target.name.value ? e.target.name.value : e.target.name.placeholder,
             photoURL: e.target.photoURL.value ? e.target.photoURL.value : e.target.photoURL.placeholder
@@ -67,8 +69,7 @@ const NavBar = () => {
     //-------------handel theme chaining----------
     const handelThem = (e) => {
         if (e.target.checked) {
-            setTheme('dark')
-
+            setTheme('valentine')
         }
         else {
             setTheme('light')
@@ -85,7 +86,7 @@ const NavBar = () => {
         if (e.target.value !== "") {
             setInputValue(e.target.value);
         }
-        else{
+        else {
             setInputValue("")
         }
 
@@ -98,7 +99,7 @@ const NavBar = () => {
             .catch(err => {
                 setSearchData([])
             })
-    },[inputValue])
+    }, [inputValue])
     const closeWindow = () => {
         setInputValue('')
         setSearchData([]);
@@ -126,14 +127,14 @@ const NavBar = () => {
 
     </>
     return (
-        <div className='bg-green-200 fixed top-0 w-full z-[100]'>
+        <div className='bg-green-300 fixed top-0 w-full z-[100]'>
             <div className="navbar container mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </div>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 dark:text-white rounded-box w-56">
+                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-56">
                             {navItems}
                         </ul>
                     </div>
@@ -143,7 +144,7 @@ const NavBar = () => {
                     </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1 dark:text-white">
+                    <ul className="menu menu-horizontal px-1 ">
                         {navItems}
                     </ul>
                 </div>
@@ -155,7 +156,7 @@ const NavBar = () => {
                                 <RxCross2 onClick={closeWindow} className='z-50 text-xl cursor-pointer' />}
                         </label>
                         <div
-                            className={`${inputValue ? "" : 'hidden'} min-h-[300px] max-h-[50vh] overflow-y-auto w-[600px] absolute bg-green-200 top-20 right-0 z-50 p-5 rounded-md`}>
+                            className={`${inputValue ? "" : 'hidden'} min-h-[300px] max-h-[50vh] overflow-y-auto w-[600px] absolute bg-base-100 top-20 right-0 z-50 p-5 rounded-md`}>
                             {
                                 searchData.length === 0 ? <div>
 
@@ -173,8 +174,8 @@ const NavBar = () => {
                                                 </div>
                                                 <div className='flex justify-end'>
                                                     <Link
-                                                    onClick={closeWindow}
-                                                    className='btn btn-xs btn-success text-white' to={`/service-details/${data._id}`}>
+                                                        onClick={closeWindow}
+                                                        className='btn btn-xs btn-success text-white' to={`/service-details/${data._id}`}>
                                                         View More
                                                     </Link>
                                                 </div>
@@ -241,7 +242,7 @@ const NavBar = () => {
 
             {/* <button className="btn" >open modal</button> */}
             <dialog id="my_modal_2" className="modal">
-                <div className="modal-box border-2 border-green-500 bg-green-50 dark:bg-black">
+                <div className="modal-box border-2 border-green-500">
                     <div
                         className=' mb-10 md:mb-0 mx-auto container flex  justify-center items-center px-2 md:px-0'>
                         <div className='px-5 py-10 rounded-lg ' >
@@ -249,6 +250,7 @@ const NavBar = () => {
                                 <h3 className='font-rancho text-4xl md:text-6xl text-green-500'>Edit Your Profile</h3>
                                 <div className='flex justify-center items-center mt-8'>
                                     <img className='size-[150px] rounded-full' src={currentUser?.photoURL} alt="" />
+
                                 </div>
                                 <div className='flex gap-1 flex-col mt-8'>
                                     <p className='font-semibold text-green-500'>Name</p>
@@ -261,9 +263,10 @@ const NavBar = () => {
                                     </span>
                                     <input name='email' type="text" className='bg-transparent outline-none border-b-2' readOnly value={currentUser?.email || 'Email Not Public'} />
                                 </div>
-                                <div className='flex gap-1 flex-col mt-6'>
+                                <div className='flex gap-2 flex-col mt-6'>
                                     <p className='font-semibold text-green-500'>PhotoURL</p>
                                     <input name='photoURL' type="text" className='bg-transparent outline-none border-b-2' placeholder={currentUser?.photoURL} />
+                                    {/* <input onChange={handelUploadPhoto} type="file" className='text-xs' name='localPhoto' /> */}
                                 </div>
                                 <div className='flex justify-end items-center mt-10'>
                                     <button type='submit'><Button btnName={"Update"} /></button>
