@@ -31,13 +31,13 @@ const Home = () => {
             <div className='mt-20 px-5'>
                 <div className='flex items-center justify-center gap-7'>
                     <img
-                        data-aos="fade-left"
+                        data-aos="zoom-in-up"
                         data-aos-duration="1500"
                         className='w-[25%] md:w-auto'
                         src="https://renovation.thememove.com/data/images/services_page_title.png"
                         alt="" />
                     <div
-                        data-aos="fade-right"
+                        data-aos="zoom-in-down"
                         data-aos-duration="1500"
                         className='w-3/4 md:w-1/2 text-center'>
                         <h2 className='text-4xl md:text-5xl lg:text-7xl font-rancho text-green-500 '>Professional Services </h2>
@@ -78,7 +78,7 @@ const Home = () => {
 
                 <div className='flex flex-col md:flex-row items-center justify-between text-center gap-10 mt-8'>
                     <div
-                        data-aos="fade-left"
+                        data-aos="zoom-in-down"
                         data-aos-duration="1000"
                         className='space-y-20'>
                         <div className='flex flex-col items-center justify-center gap-2'>
@@ -99,7 +99,7 @@ const Home = () => {
                         <img src="./service.png" alt="" />
                     </div>
                     <div
-                        data-aos="fade-right"
+                        data-aos="zoom-in-down"
                         data-aos-duration="1000"
                         className='space-y-20'>
                         <div className='flex flex-col items-center justify-center gap-2'>
@@ -123,7 +123,7 @@ const Home = () => {
                 <div
                     className='w-full lg:w-[60%]'>
                     <div
-                        data-aos="fade-left"
+                        data-aos="zoom-in-down"
                         data-aos-duration="1000"
                         className='border-l-4 border-green-500 px-3'>
                         <p
