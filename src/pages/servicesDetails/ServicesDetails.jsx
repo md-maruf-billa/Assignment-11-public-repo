@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FaCalendarDays, FaLocationDot } from 'react-icons/fa6';
 import { useLoaderData } from 'react-router-dom';
 import { CiClock2, CiCircleCheck } from "react-icons/ci";
@@ -7,46 +7,30 @@ import { userDataContext } from '../../providers/userAuthProvider/UserAuthProvid
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { RxCrossCircled } from "react-icons/rx";
+import { loadStripe } from '@stripe/stripe-js';
+import {
+
+    Elements,
+
+} from '@stripe/react-stripe-js';
+import CheckOut from '../../components/CheckOut/CheckOut';
+
+const publishable_key = loadStripe("pk_test_51PLduLJTj15c6ovt2EIpGvYW0gqwaYGnoWcttRSVwpOLkvCeaqdH9mTmOsg87TZPReMHmVtuo6BGMKNJKj4wgVaP00KsITVica")
+
 
 const ServicesDetails = () => {
-    const { currentUser, setLoading } = useContext(userDataContext);
+    const { currentUser } = useContext(userDataContext);
+    const [date, setDate] = useState(null)
+    const [userNote, setUserNote] = useState("")
     const data = useLoaderData();
     const { _id, photoURL, serviceName, price, serviceArea, description, providerPhoto, providerEmail, providerName } = data;
 
 
-    const handelBookService = (e) => {
-        e.preventDefault();
-        const currentDataForm = e.target;
-        const photoURL = currentDataForm.photoURL.defaultValue;
-        const serviceName = currentDataForm.serviceName.defaultValue;
-        const serviceProviderName = currentDataForm.serviceProviderName.defaultValue;
-        const serviceProviderEmail = currentDataForm.serviceProviderEmail.defaultValue;
-        const customerName = currentDataForm.customerName.defaultValue;
-        const customerEmail = currentDataForm.customerEmail.defaultValue;
-        const price = currentDataForm.price.defaultValue;
-        const bookingDate = currentDataForm.bookingDate.value;
-        const description = currentDataForm.description.value;
-        const status = "pending"
 
-        const allBookingData = { serviceId: _id, photoURL, serviceName, serviceProviderName, serviceProviderEmail, customerName, customerEmail, price, bookingDate, description, status };
+    const allBookingData = { serviceId: _id, photoURL, serviceName, serviceProviderName: providerName, serviceProviderEmail: providerEmail, customerName: currentUser.displayName, customerEmail: currentUser.email, price, bookingDate:date, description:userNote, status: "pending" };
 
-        axios.post(import.meta.env.VITE_API_URL + "/post-booking", allBookingData)
-            .then(res => {
-                Swal.fire({
-                    title: "Congratulation",
-                    text: "Your Booking is Successfully saved!",
-                    icon: "success"
-                });
-                setLoading(true)
 
-            }).catch(err => {
-                Swal.fire({
-                    title: "Opps",
-                    text: "Booking save failed something went wrong",
-                    icon: "error"
-                });
-            })
-    }
+
 
     return (
         <div className='container mx-auto min-h-[calc(100vh-112px)] mt-28'>
@@ -206,7 +190,7 @@ const ServicesDetails = () => {
                     <section className=" p-6 mx-auto  rounded-md ">
                         <h2 className="text-3xl md:text-6xl font-semibold text-green-500 capitalize dark:text-white font-rancho text-center">Booking Service</h2>
 
-                        <form onSubmit={handelBookService} className='mt-10'>
+                        <form className='mt-10'>
                             <div className="lg:grid grid-cols-2 space-y-3 md:space-y-0 gap-5 mt-4">
 
                                 <div>
@@ -247,35 +231,34 @@ const ServicesDetails = () => {
                                 <div>
                                     <span className='relative'><label className="text-gray-700  " htmlFor="username">Booking Date</label> <CiCircleCheck className='absolute bottom-3 -right-4 text-green-800  text-xs' /></span>
                                     <input
-
+                                        onChange={(e) => setDate(e.target.value)}
                                         required name="bookingDate" type="date" className="block w-full px-4 py-2 mt-2 text-gray-600 border-gray-200 rounded-md dark:bg-gray-800  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
                                 </div>
                                 <div className='col-span-2'>
                                     <span className='relative'><label className="text-gray-700  " htmlFor="username">Booking instruction</label> <CiCircleCheck className='absolute bottom-3 -right-4 text-green-800  text-xs' /></span>
                                     <textarea required
+                                    onChange={(e)=> setUserNote(e.target.value)}
                                         name='description'
                                         rows="3"
                                         placeholder='Write your booking instruction ex: exact location etc' type="text" className="block w-full px-4 py-2 mt-2 text-gray-600 border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
                                 </div>
                             </div>
+
                             {/* ------------ACTION BUTTON------------ */}
-                            <div className="flex justify-between mt-5">
-                                <form method="dialog">
-                                    {/* if there is a button in form, it will close the modal */}
-                                    <button className="btn btn-error btn-outline">Cancel</button>
-                                </form>
-                                <div>
-                                    <button type='submit'><Button btnName={"Booking Now"} /></button>
-                                </div>
-                            </div>
+
+
                         </form>
+                        <Elements stripe={publishable_key}>
+
+                            <CheckOut price={price} allBookingData={allBookingData} />
+                        </Elements>
 
                         <div className='flex gap-10 items-center justify-center mt-4'>
                             <small className='flex items-center gap-2'><CiCircleCheck className='text-green-800' /> You can edit it</small>
                             <small className='flex items-center gap-2'><RxCrossCircled className='text-red-600' /> You can't edit it</small>
                         </div>
                     </section>
-                        <p className='text-center text-xs'>Press Esc to close it.</p>
+                    <p className='text-center text-xs'>Press Esc to close it.</p>
 
                 </div>
             </dialog>
