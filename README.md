@@ -1,7 +1,17 @@
-# assignment_category_0002
-
 ## Website Name -: House Help Hub (H.H.H)
 ### Live Link -: https://house-help-hub.web.app/
+
+### How to run it in your computer
+
+```
+// Replace all api key in .env file
+
+git clone https://github.com/md-maruf-billa/Assignment-11-public-repo.git
+
+npm install
+
+npm run dev
+```
 
 ## Main Features Of this Website:
 
